@@ -1,4 +1,4 @@
-﻿# tasker-significant-places
+# tasker-significant-places
 
 Automazione Tasker orientata all'individuazione dei luoghi significativi visitati dal dispositivo, con configurazione esterna e log minimale basato sulle soste.
 
