@@ -1,4 +1,4 @@
-# Specifica Del Logger Dei Luoghi
+﻿# Specifica Del Logger Dei Luoghi
 
 ## Obiettivo
 
@@ -43,7 +43,7 @@ Valori correnti di default:
 
 Il file `config/tasker_globals.csv` documenta e conserva i valori di default del progetto.
 
-La lettura diretta del file esterno non e' ancora implementata nel prototipo corrente: l'XML imposta gli stessi valori tramite `LOAD_CONFIG_DEFAULTS`.
+Nel prototipo corrente il file esterno viene letto realmente dal task `LOAD_CONFIG_DEFAULTS`, che applica fallback ai default interni se il file manca o contiene errori.
 
 ## Concetti logici minimi
 
@@ -63,6 +63,7 @@ Non serve uno stato esplicito di tipo `MOVING`.
 - `%CURRENT_PLACE_LON`
 - `%CURRENT_PLACE_ID`
 - `%CURRENT_PLACE_NAME`
+- `%CURRENT_LOG_DATE`
 - `%CANDIDATE_PLACE_LAT`
 - `%CANDIDATE_PLACE_LON`
 - `%CANDIDATE_SINCE`
@@ -79,11 +80,12 @@ Non serve uno stato esplicito di tipo `MOVING`.
 All'inizio della giornata, oppure al primo avvio utile del task giornaliero:
 
 1. viene acquisita una posizione valida
-2. viene creato immediatamente il primo record del giorno
-3. il record viene scritto con:
+2. se il file CSV del giorno non esiste, viene creato con header
+3. viene scritto il primo record del giorno
+4. il record viene scritto con:
    - `PLACE_ID = 1`
    - `NAME = Luogo_1`
-4. le coordinate di quel record diventano il luogo confermato corrente
+5. le coordinate di quel record diventano il luogo confermato corrente
 
 ## Regola per restare nello stesso luogo
 
@@ -179,6 +181,15 @@ In una fase successiva si potra' introdurre:
 - rinomina manuale
 - luoghi noti
 - luoghi ricorrenti
+
+## Recovery operativo minimo attuale
+
+Il task principale esegue oggi anche una prima forma di controllo operativo:
+
+- ricarica la config minima se manca
+- verifica se la data salvata nello stato coincide col giorno corrente
+- verifica se lo stato del luogo corrente e' presente
+- se necessario, rilancia `INIT_SIGNIFICANT_PLACES`
 
 ## Ricostruzione successiva dei viaggi
 

@@ -47,7 +47,7 @@ TIMESTAMP;LAT;LON;PLACE_ID;NAME
 
 ## Stato attuale
 
-La repo contiene un primo prototipo Tasker funzionante con:
+La repo contiene un prototipo Tasker funzionante con:
 
 - `LOAD_CONFIG_DEFAULTS`
 - `INIT_SIGNIFICANT_PLACES`
@@ -55,15 +55,16 @@ La repo contiene un primo prototipo Tasker funzionante con:
 
 Il prototipo attuale:
 
+- legge realmente il file `tasker_globals.csv` sul telefono con fallback ai default interni
 - scrive subito il primo luogo del giorno
 - crea un candidato nuovo luogo quando il dispositivo esce dal raggio del luogo corrente
 - conferma il candidato dopo il tempo minimo richiesto
 - scrive nel CSV solo i luoghi confermati
-
-La lettura diretta del file `config/tasker_globals.csv` non e' ancora implementata: al momento il task `LOAD_CONFIG_DEFAULTS` imposta nell'XML gli stessi valori documentati nella config.
+- gestisce una prima forma di recovery operativo su config minima mancante e cambio giorno
 
 ## Prossimi passi prioritari
 
-- leggere davvero la configurazione esterna dal telefono
-- definire e implementare il comportamento operativo su cambio giorno, riavvio e recovery
-- validare il prototipo con test reali in movimento
+- fare test reali in movimento con questa versione
+- rifinire ulteriormente il comportamento operativo su riavvii e stati sporchi
+- pulire le globali obsolete ancora presenti nell'ambiente Tasker
+- introdurre successivamente riconoscimento di luoghi noti e report giornalieri

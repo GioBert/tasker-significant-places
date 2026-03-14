@@ -1,4 +1,4 @@
-# Visione Del Progetto
+﻿# Visione Del Progetto
 
 ## Sintesi
 
@@ -37,11 +37,13 @@ Lo spostamento tra due righe e' implicito e potra' essere ricostruito successiva
 
 ## Nota importante
 
-Nel prototipo corrente il file `config/tasker_globals.csv` e' allineato ai valori usati, ma non viene ancora letto direttamente dall'automazione. I valori attivi vengono impostati da `LOAD_CONFIG_DEFAULTS` dentro l'XML.
+Nel prototipo corrente il file `config/tasker_globals.csv` viene letto realmente da `LOAD_CONFIG_DEFAULTS`, con fallback ai default interni definiti nell'XML.
+
+Questo significa che oggi il comportamento dell'automazione puo' gia' essere modificato intervenendo sul file di configurazione sul telefono, pur mantenendo una rete di sicurezza nel caso il file manchi o contenga errori.
 
 ## Roadmap iniziale
 
-1. Consolidare il prototipo XML attuale.
-2. Fare test reali in movimento.
-3. Introdurre la lettura reale della configurazione esterna.
+1. Consolidare il prototipo XML attuale con test reali.
+2. Rifinire il comportamento operativo su riavvii e recovery.
+3. Pulire le globali obsolete ancora presenti nell'ambiente Tasker.
 4. Introdurre successivamente riconoscimento di luoghi noti e report giornalieri.
