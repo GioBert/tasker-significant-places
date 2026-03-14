@@ -1,4 +1,4 @@
-# tasker-significant-places
+﻿# tasker-significant-places
 
 Automazione Tasker orientata all'individuazione dei luoghi significativi visitati dal dispositivo, con log minimale basato sulle soste.
 
@@ -42,6 +42,8 @@ TIMESTAMP;LAT;LON;PLACE_ID;NAME
 - `docs/strumenti_consigliati.md`
 - `docs/specifica_logger_luoghi.md`
 - `docs/mappa_variabili_tasker.md`
+- `docs/configurazione_esterna.md`
+- `docs/comportamento_operativo.md`
 
 ## Stato attuale
 
@@ -59,3 +61,9 @@ Il prototipo attuale:
 - scrive nel CSV solo i luoghi confermati
 
 La lettura diretta del file `config/tasker_globals.csv` non e' ancora implementata: al momento il task `LOAD_CONFIG_DEFAULTS` imposta nell'XML gli stessi valori documentati nella config.
+
+## Prossimi passi prioritari
+
+- leggere davvero la configurazione esterna dal telefono
+- definire e implementare il comportamento operativo su cambio giorno, riavvio e recovery
+- validare il prototipo con test reali in movimento
