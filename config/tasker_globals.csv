@@ -10,10 +10,10 @@ LOG_DIR=/storage/emulated/0/_SignificantPlaces
 PLACE_RADIUS_METERS=100
 
 # Tempo minimo di sosta, in minuti, necessario per confermare un nuovo luogo.
-MIN_STOP_MINUTES=1
+MIN_STOP_MINUTES=5
 
 # Prefisso usato per i nomi automatici dei luoghi, ad esempio Luogo_1, Luogo_2.
 PLACE_NAME_PREFIX=Luogo_
 
 # Accuratezza GPS massima accettata, in metri, per considerare valido un campione.
-GPS_MAX_ACCURACY_METERS=200
+GPS_MAX_ACCURACY_METERS=50
