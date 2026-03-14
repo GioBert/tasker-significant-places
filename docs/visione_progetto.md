@@ -1,4 +1,4 @@
-﻿# Visione Del Progetto
+# Visione Del Progetto
 
 ## Sintesi
 
@@ -27,18 +27,21 @@ TIMESTAMP;LAT;LON;PLACE_ID;NAME
 
 Lo spostamento tra due righe e' implicito e potra' essere ricostruito successivamente da strumenti di elaborazione.
 
-## Decisioni iniziali
+## Decisioni iniziali del prototipo attuale
 
 - distanza massima per considerare "stesso luogo": `100 metri`
-- tempo minimo di sosta per confermare un nuovo luogo: `10 minuti`
+- tempo minimo di sosta per confermare un nuovo luogo: `1 minuto`
 - il primo luogo della giornata viene scritto subito come record iniziale
 - i nomi automatici dei luoghi seguono il formato `Luogo_1`, `Luogo_2`, ...
 - il comportamento dell'automazione deve essere il piu' possibile parametrico tramite file di configurazione esterno
 
+## Nota importante
+
+Nel prototipo corrente il file `config/tasker_globals.csv` e' allineato ai valori usati, ma non viene ancora letto direttamente dall'automazione. I valori attivi vengono impostati da `LOAD_CONFIG_DEFAULTS` dentro l'XML.
+
 ## Roadmap iniziale
 
-1. Definire la configurazione esterna del progetto.
-2. Definire la logica del logger dei luoghi.
-3. Implementare una prima variante XML sperimentale.
-4. Testare il comportamento su casi reali.
-5. Introdurre successivamente riconoscimento di luoghi noti e report giornalieri.
+1. Consolidare il prototipo XML attuale.
+2. Fare test reali in movimento.
+3. Introdurre la lettura reale della configurazione esterna.
+4. Introdurre successivamente riconoscimento di luoghi noti e report giornalieri.
