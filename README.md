@@ -1,4 +1,4 @@
-﻿# tasker-significant-places
+# tasker-significant-places
 
 Automazione Tasker orientata all'individuazione dei luoghi significativi visitati dal dispositivo, con log minimale basato sulle soste.
 
@@ -15,19 +15,27 @@ TIMESTAMP;LAT;LON;PLACE_ID;NAME
 2026-03-14 00.00;0.000000;0.000000;1;Luogo_1
 ```
 
+Nel prototipo attuale il campo `TIMESTAMP` ha questo significato:
+
+- per il primo record del giorno, rappresenta il momento in cui `INIT_SIGNIFICANT_PLACES` ottiene un fix valido
+- per i luoghi successivi confermati, rappresenta il momento di nascita del candidato luogo, non il momento finale di conferma
+
+Questo rende il log piu' vicino all'orario reale di arrivo, pur mantenendo la scrittura del record solo dopo la conferma della sosta significativa.
+
 ## Parametri attuali del prototipo
 
 - `LOG_DIR=/storage/emulated/0/_SignificantPlaces`
 - `PLACE_RADIUS_METERS=100`
-- `MIN_STOP_MINUTES=1`
+- `MIN_STOP_MINUTES=5`
 - `PLACE_NAME_PREFIX=Luogo_`
-- `GPS_MAX_ACCURACY_METERS=200`
+- `GPS_MAX_ACCURACY_METERS=50`
 
 ## Principi di base
 
 - il primo luogo della giornata viene scritto subito come record iniziale
 - un nuovo luogo viene confermato solo dopo una permanenza minima configurabile
 - il CSV contiene solo luoghi confermati
+- per i luoghi successivi al primo, il timestamp rappresenta la nascita del candidato confermato
 - la documentazione e' in italiano
 - XML, identificatori tecnici e codice restano in inglese
 
@@ -59,6 +67,7 @@ Il prototipo attuale:
 - scrive subito il primo luogo del giorno
 - crea un candidato nuovo luogo quando il dispositivo esce dal raggio del luogo corrente
 - conferma il candidato dopo il tempo minimo richiesto
+- usa nel CSV il timestamp di nascita del candidato quando un nuovo luogo viene confermato
 - scrive nel CSV solo i luoghi confermati
 - gestisce una prima forma di recovery operativo su config minima mancante e cambio giorno
 

@@ -1,4 +1,4 @@
-﻿# Specifica Del Logger Dei Luoghi
+# Specifica Del Logger Dei Luoghi
 
 ## Obiettivo
 
@@ -35,9 +35,9 @@ Valori correnti di default:
 
 - `LOG_DIR=/storage/emulated/0/_SignificantPlaces`
 - `PLACE_RADIUS_METERS=100`
-- `MIN_STOP_MINUTES=1`
+- `MIN_STOP_MINUTES=5`
 - `PLACE_NAME_PREFIX=Luogo_`
-- `GPS_MAX_ACCURACY_METERS=200`
+- `GPS_MAX_ACCURACY_METERS=50`
 
 ## Nota sulla configurazione esterna
 
@@ -67,6 +67,7 @@ Non serve uno stato esplicito di tipo `MOVING`.
 - `%CANDIDATE_PLACE_LAT`
 - `%CANDIDATE_PLACE_LON`
 - `%CANDIDATE_SINCE`
+- `%CANDIDATE_SINCE_TIMESTAMP`
 - `%CANDIDATE_CONFIRM_COUNT`
 - `%PLACE_COUNTER`
 - `%LAST_SAMPLE_TIME`
@@ -130,6 +131,22 @@ Quando il candidato viene confermato:
 - il nuovo record viene scritto nel CSV
 - il luogo confermato corrente viene aggiornato
 - il candidato viene azzerato
+
+## Significato del timestamp nel CSV
+
+Nel prototipo attuale il record di un nuovo luogo viene scritto solo dopo la conferma della sosta significativa.
+
+Tuttavia il valore salvato nel campo `TIMESTAMP` non e' l'istante finale di conferma. Per i luoghi successivi al primo, il CSV usa il momento in cui e' nato il candidato:
+
+- primo campione coerente del nuovo luogo
+- orario stimato di arrivo
+
+Questo comporta che:
+
+- la scrittura effettiva del record avviene piu' tardi
+- il timestamp nel CSV e' piu' vicino all'arrivo reale rispetto al momento della conferma
+
+Per il primo record giornaliero, invece, il timestamp resta quello del fix valido ottenuto durante `INIT_SIGNIFICANT_PLACES`.
 
 ## Regola per ignorare soste brevi
 

@@ -1,4 +1,4 @@
-﻿# Visione Del Progetto
+# Visione Del Progetto
 
 ## Sintesi
 
@@ -27,10 +27,12 @@ TIMESTAMP;LAT;LON;PLACE_ID;NAME
 
 Lo spostamento tra due righe e' implicito e potra' essere ricostruito successivamente da strumenti di elaborazione.
 
+Nel prototipo attuale il `TIMESTAMP` dei luoghi successivi al primo rappresenta il momento in cui nasce il candidato nuovo luogo, non l'istante finale in cui la sosta viene confermata. Questo rende il diario piu' vicino all'orario reale di arrivo.
+
 ## Decisioni iniziali del prototipo attuale
 
 - distanza massima per considerare "stesso luogo": `100 metri`
-- tempo minimo di sosta per confermare un nuovo luogo: `1 minuto`
+- tempo minimo di sosta per confermare un nuovo luogo: `5 minuti`
 - il primo luogo della giornata viene scritto subito come record iniziale
 - i nomi automatici dei luoghi seguono il formato `Luogo_1`, `Luogo_2`, ...
 - il comportamento dell'automazione deve essere il piu' possibile parametrico tramite file di configurazione esterno

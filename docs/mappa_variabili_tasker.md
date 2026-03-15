@@ -1,4 +1,4 @@
-﻿# Mappa Delle Variabili Tasker
+# Mappa Delle Variabili Tasker
 
 ## Scopo
 
@@ -71,6 +71,7 @@ Variabili tecniche temporanee usate durante il caricamento della config.
 ### `%CANDIDATE_PLACE_LAT`
 ### `%CANDIDATE_PLACE_LON`
 ### `%CANDIDATE_SINCE`
+### `%CANDIDATE_SINCE_TIMESTAMP`
 ### `%CANDIDATE_CONFIRM_COUNT`
 ### `%LAST_SAMPLE_TIME`
 
@@ -108,6 +109,8 @@ Sono variabili di supporto usate dal task principale per decidere se ricaricare 
 ### `%log_file`
 ### `%file_exists`
 
+Nel task principale il record dei nuovi luoghi confermati usa `%CANDIDATE_SINCE_TIMESTAMP` come valore del campo `TIMESTAMP` nel CSV.
+
 ## Variabili inizializzate nel task giornaliero
 
 Nel prototipo attuale `INIT_SIGNIFICANT_PLACES` inizializza almeno:
@@ -121,6 +124,7 @@ Nel prototipo attuale `INIT_SIGNIFICANT_PLACES` inizializza almeno:
 - `%CANDIDATE_PLACE_LAT = 0`
 - `%CANDIDATE_PLACE_LON = 0`
 - `%CANDIDATE_SINCE = 0`
+- `%CANDIDATE_SINCE_TIMESTAMP = 0`
 - `%CANDIDATE_CONFIRM_COUNT = 0`
 - `%LAST_SAMPLE_TIME = %TIMES`
 
@@ -129,6 +133,7 @@ Nel prototipo attuale `INIT_SIGNIFICANT_PLACES` inizializza almeno:
 - `%CANDIDATE_PLACE_LAT`
 - `%CANDIDATE_PLACE_LON`
 - `%CANDIDATE_SINCE`
+- `%CANDIDATE_SINCE_TIMESTAMP`
 - `%CANDIDATE_CONFIRM_COUNT`
 
 ## Variabili aggiornate quando un nuovo luogo viene confermato
@@ -139,6 +144,7 @@ Quando un candidato diventa luogo confermato:
 - `%CURRENT_PLACE_ID` assume il nuovo valore
 - `%CURRENT_PLACE_NAME` viene costruita con `%PLACE_NAME_PREFIX`
 - `%CURRENT_PLACE_LAT` e `%CURRENT_PLACE_LON` vengono aggiornate
+- il CSV usa `%CANDIDATE_SINCE_TIMESTAMP` come orario del luogo confermato
 - le variabili del candidato vengono azzerate
 
 ## Nota di implementazione
