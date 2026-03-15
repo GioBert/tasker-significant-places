@@ -75,7 +75,7 @@ Questo rende il log piu' vicino all'orario reale di arrivo, pur mantenendo la sc
 
 ### Principi di base
 
-- il primo luogo della giornata viene scritto subito come record iniziale
+- il primo luogo della giornata viene scritto subito come record iniziale e, se corrisponde a un luogo noto, ne usa il nome
 - un nuovo luogo viene confermato solo dopo una permanenza minima configurabile
 - il CSV contiene solo luoghi confermati
 - per i luoghi successivi al primo, il timestamp rappresenta la nascita del candidato confermato
@@ -119,4 +119,4 @@ Il prototipo attuale:
 - continuare i test reali in movimento con questa versione
 - rifinire ulteriormente il comportamento operativo su riavvii e stati sporchi
 - pulire le globali obsolete ancora presenti nell'ambiente Tasker
-- introdurre successivamente riconoscimento di luoghi noti e report giornalieri
+- continuare a rifinire e testare il riconoscimento dei luoghi noti e introdurre report giornalieri

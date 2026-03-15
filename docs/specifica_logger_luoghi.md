@@ -85,7 +85,7 @@ All'inizio della giornata, oppure al primo avvio utile del task giornaliero:
 3. viene scritto il primo record del giorno
 4. il record viene scritto con:
    - `PLACE_ID = 1`
-   - `NAME = Luogo_1`
+   - `NAME = Luogo_1`, oppure il `DISPLAY_NAME` di un luogo noto se il primo fix rientra in un `known_places.csv`
 5. le coordinate di quel record diventano il luogo confermato corrente
 
 ## Regola per restare nello stesso luogo
@@ -187,16 +187,16 @@ Non devono comparire:
 
 ## Naming dei luoghi
 
-Nel prototipo attuale il nome del luogo e' automatico:
+Nel prototipo attuale il nome del luogo segue questa regola:
 
-- `Luogo_1`
-- `Luogo_2`
-- `Luogo_3`
+- se il luogo corrisponde a una voce di `known_places.csv`, viene usato il `DISPLAY_NAME` del luogo noto
+- altrimenti viene usato il naming automatico (`Luogo_1`, `Luogo_2`, `Luogo_3`...)
+
+Questo vale sia per il primo luogo del giorno scritto da `INIT_SIGNIFICANT_PLACES`, sia per i luoghi confermati successivamente da `LOG_SIGNIFICANT_PLACE_SAMPLE`.
 
 In una fase successiva si potra' introdurre:
 
 - rinomina manuale
-- luoghi noti
 - luoghi ricorrenti
 
 ## Recovery operativo minimo attuale
