@@ -1,40 +1,61 @@
-﻿# Configurazione Esterna Reale
+# Configurazione Esterna Reale
 
 ## Obiettivo
 
-Questo documento definisce come deve funzionare la configurazione esterna del progetto `tasker-significant-places`.
+Questo documento descrive i file di configurazione esterna del progetto `tasker-significant-places`.
 
 L'obiettivo e' rendere l'automazione parametrica senza dover modificare l'XML per cambiare soglie, percorsi o convenzioni di naming.
 
 ## Stato attuale
 
-Nel prototipo corrente il file `config/tasker_globals.csv` esiste, contiene commenti esplicativi in italiano ed e' allineato ai valori usati, ma non viene ancora letto direttamente da Tasker.
+Nel prototipo corrente il task `LOAD_CONFIG_DEFAULTS` legge realmente il file `config/tasker_globals.csv` sul telefono e applica fallback ai default interni se il file manca o contiene errori.
 
-Il task `LOAD_CONFIG_DEFAULTS` imposta nell'XML gli stessi valori di default.
+Accanto a questo file, il progetto puo' evolvere introducendo anche un secondo file dedicato ai luoghi noti.
 
-## Obiettivo della prossima implementazione
+## File di configurazione previsti
 
-Il task di configurazione dovra':
+### 1. `tasker_globals.csv`
 
-- leggere il file esterno dal telefono
-- interpretare il contenuto riga per riga
-- valorizzare le globali Tasker corrispondenti
-- usare fallback sicuri se il file manca o contiene errori
-- permettere all'utente di modificare il comportamento dell'automazione senza cambiare il file XML
+Serve per definire i parametri generali del logger, come:
 
-## Posizione del file sul telefono
+- cartella di output
+- raggio dei luoghi
+- tempo minimo di conferma
+- prefisso dei nomi automatici
+- accuratezza GPS minima accettata
 
-Percorso consigliato:
+Percorso consigliato sul telefono:
 
 ```text
 /storage/emulated/0/_SignificantPlaces/config/tasker_globals.csv
 ```
 
-Questa scelta tiene la configurazione dentro la stessa cartella radice del progetto e semplifica backup, esportazione e sincronizzazione.
+### 2. `known_places.csv`
 
-## Formato del file
+Serve per definire un elenco personale di luoghi noti, associando a ciascuno:
 
-Il formato da supportare e' una riga per parametro nel formato:
+- una chiave stabile
+- un nome leggibile
+- una coordinata centrale
+- un raggio di riconoscimento
+
+Percorso consigliato sul telefono:
+
+```text
+/storage/emulated/0/_SignificantPlaces/config/known_places.csv
+```
+
+Per motivi di privacy, il file reale personale non deve essere versionato nella repo.
+
+Nella repo pubblica viene invece mantenuto solo un file di esempio:
+
+```text
+config/known_places.example.csv
+```
+
+## Formato di `tasker_globals.csv`
+
+Il formato supportato e' una riga per parametro nel formato:
 
 ```text
 CHIAVE=VALORE
@@ -42,7 +63,7 @@ CHIAVE=VALORE
 
 Sono ammessi anche commenti, per rendere il file piu' leggibile e manutenibile.
 
-Esempio completo coerente con il file reale:
+Esempio coerente con il file reale attuale:
 
 ```text
 # Configurazione principale del progetto tasker-significant-places
@@ -57,18 +78,47 @@ LOG_DIR=/storage/emulated/0/_SignificantPlaces
 PLACE_RADIUS_METERS=100
 
 # Tempo minimo di sosta, in minuti, necessario per confermare un nuovo luogo.
-MIN_STOP_MINUTES=1
+MIN_STOP_MINUTES=5
 
 # Prefisso usato per i nomi automatici dei luoghi, ad esempio Luogo_1, Luogo_2.
 PLACE_NAME_PREFIX=Luogo_
 
 # Accuratezza GPS massima accettata, in metri, per considerare valido un campione.
-GPS_MAX_ACCURACY_METERS=200
+GPS_MAX_ACCURACY_METERS=50
 ```
 
-## Regole di parsing
+## Formato di `known_places.csv`
 
-Il parser della config dovra' seguire queste regole:
+Il formato concordato per i luoghi noti e' questo:
+
+```text
+PLACE_KEY;DISPLAY_NAME;LAT;LON;RADIUS_METERS
+home;Casa;44.274650;11.689900;80
+work_main;Lavoro XXX;44.273120;11.721220;120
+```
+
+Significato delle colonne:
+
+- `PLACE_KEY`: chiave stabile del luogo
+- `DISPLAY_NAME`: nome leggibile da usare nel CSV
+- `LAT`: latitudine del centro del luogo
+- `LON`: longitudine del centro del luogo
+- `RADIUS_METERS`: raggio entro cui il luogo e' considerato riconosciuto
+
+## Regole di matching per i luoghi noti
+
+Le decisioni attuali del progetto sono queste:
+
+- i luoghi noti vengono usati solo per il nome
+- il matching avviene solo quando un luogo e' gia' stato confermato
+- se un luogo confermato cade nel raggio di un luogo noto, il nome usato nel CSV deve essere `DISPLAY_NAME`
+- in questo caso non si usa il placeholder `Luogo_n`
+- se piu' luoghi noti sono compatibili, vince quello col centro piu' vicino
+- se nessun luogo noto corrisponde, il sistema continua a usare i nomi automatici
+
+## Regole di parsing per `tasker_globals.csv`
+
+Il parser della config deve seguire queste regole:
 
 - righe vuote: ignorate
 - righe che iniziano con `#`: ignorate come commenti
@@ -78,9 +128,7 @@ Il parser della config dovra' seguire queste regole:
 - chiavi sconosciute: ignorate senza bloccare il task
 - valori invalidi: ignorati, con fallback al default
 
-## Parametri minimi da supportare
-
-La prima implementazione reale deve leggere almeno queste chiavi:
+## Parametri minimi attualmente supportati in `tasker_globals.csv`
 
 - `LOG_DIR`
 - `PLACE_RADIUS_METERS`
@@ -89,8 +137,6 @@ La prima implementazione reale deve leggere almeno queste chiavi:
 - `GPS_MAX_ACCURACY_METERS`
 
 ## Strategia di fallback
-
-Il caricamento della config deve essere robusto.
 
 Ordine consigliato:
 
@@ -124,14 +170,16 @@ Se la config non puo' essere letta o contiene errori:
 
 ## Variabili tecniche utili per l'implementazione
 
-Una prima implementazione potrebbe usare variabili di supporto come:
+Una prima implementazione della config generale usa gia' variabili di supporto come:
 
 - `%CONFIG_FILE_PATH`
 - `%CONFIG_LOAD_STATUS`
 - `%CONFIG_ERROR_COUNT`
 
-Queste variabili non fanno parte del modello dati del prodotto, ma possono aiutare debug e recovery.
-
 ## Obiettivo pratico
 
-Quando questa parte sara' completata, l'utente dovra' poter cambiare soglie e percorso di output modificando soltanto `tasker_globals.csv`, senza reimportare un nuovo XML.
+Quando questa parte sara' completata anche per i luoghi noti, l'utente dovra' poter:
+
+- cambiare soglie e comportamento del logger modificando `tasker_globals.csv`
+- definire i propri luoghi noti personali tramite `known_places.csv`
+- mantenere pubblica la repo senza esporre i propri luoghi reali

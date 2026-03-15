@@ -8,3 +8,4 @@ exports/
 analysis/
 runlog.txt
 *_significant_places.csv
+config/known_places.csv
