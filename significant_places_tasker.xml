@@ -91,7 +91,8 @@
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="0" />
     </Action>
-    <Action sr="act6" ve="7">
+    <Action sr="act6" ve="7"><code>547</code><Str sr="arg0" ve="3">%KNOWN_PLACES_FILE_PATH</Str><Str sr="arg1" ve="3">/storage/emulated/0/_SignificantPlaces/config/known_places.csv</Str><Int sr="arg2" val="0" /><Int sr="arg3" val="0" /><Int sr="arg4" val="0" /><Int sr="arg5" val="3" /><Int sr="arg6" val="0" /></Action>
+    <Action sr="act7" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CONFIG_LOAD_STATUS</Str>
       <Str sr="arg1" ve="3">defaults_only</Str>
@@ -101,7 +102,7 @@
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="0" />
     </Action>
-    <Action sr="act7" ve="7">
+    <Action sr="act8" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CONFIG_ERROR_COUNT</Str>
       <Str sr="arg1" ve="3">0</Str>
@@ -111,7 +112,7 @@
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act8" ve="7">
+    <Action sr="act9" ve="7">
       <code>342</code>
       <Int sr="arg0" val="5" />
       <Str sr="arg1" ve="3">%CONFIG_FILE_PATH</Str>
@@ -119,7 +120,7 @@
       <Int sr="arg3" val="0" />
       <Int sr="arg4" val="1" />
     </Action>
-    <Action sr="act9" ve="7">
+    <Action sr="act10" ve="7">
       <code>37</code>
       <ConditionList sr="if">
         <Condition sr="c0" ve="3">
@@ -129,13 +130,13 @@
         </Condition>
       </ConditionList>
     </Action>
-    <Action sr="act10" ve="7">
+    <Action sr="act11" ve="7">
       <code>417</code>
       <Str sr="arg0" ve="3">%CONFIG_FILE_PATH</Str>
       <Str sr="arg1" ve="3">%config_raw</Str>
       <Int sr="arg2" val="0" />
     </Action>
-    <Action sr="act11" ve="7">
+    <Action sr="act12" ve="7">
       <code>129</code>
       <Str sr="arg0" ve="3">var raw = String(config_raw || '');
 var errors = 0;
@@ -204,7 +205,7 @@ if (applied &gt; 0 &amp;&amp; errors &gt; 0) {
       <Int sr="arg2" val="1" />
       <Int sr="arg3" val="45" />
     </Action>
-    <Action sr="act12" ve="7">
+    <Action sr="act13" ve="7">
       <code>38</code>
     </Action>
   </Task>
@@ -1104,14 +1105,68 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act57" ve="7">
+    <Action sr="act57" ve="7"><code>342</code><Int sr="arg0" val="5" /><Str sr="arg1" ve="3">%KNOWN_PLACES_FILE_PATH</Str><Str sr="arg2" ve="3">%known_places_file_exists</Str><Int sr="arg3" val="0" /><Int sr="arg4" val="1" /></Action>
+    <Action sr="act58" ve="7"><code>37</code><ConditionList sr="if"><Condition sr="c0" ve="3"><lhs>%known_places_file_exists</lhs><op>2</op><rhs>true</rhs></Condition></ConditionList></Action>
+    <Action sr="act59" ve="7"><code>417</code><Str sr="arg0" ve="3">%KNOWN_PLACES_FILE_PATH</Str><Str sr="arg1" ve="3">%known_places_raw</Str><Int sr="arg2" val="0" /></Action>
+    <Action sr="act60" ve="7"><code>129</code><Str sr="arg0" ve="3">function haversine(lat1, lon1, lat2, lon2) {
+  var R = 6371000;
+  var toRad = function(v) { return v * Math.PI / 180; };
+  var dLat = toRad(lat2 - lat1);
+  var dLon = toRad(lon2 - lon1);
+  var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+          Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+          Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
+
+var raw = String(known_places_raw || '');
+var targetLat = parseFloat(global('CURRENT_PLACE_LAT'));
+var targetLon = parseFloat(global('CURRENT_PLACE_LON'));
+var bestName = '';
+var bestDistance = Infinity;
+
+if (!isNaN(targetLat) &amp;&amp; !isNaN(targetLon) &amp;&amp; raw.trim()) {
+  var lines = raw.split(/\r?\n/);
+  for (var i = 0; i &lt; lines.length; i++) {
+    var line = String(lines[i] || '').trim();
+    if (!line || line.indexOf('#') === 0 || line.indexOf('PLACE_KEY;') === 0) {
+      continue;
+    }
+
+    var parts = line.split(';');
+    if (parts.length &lt; 5) {
+      continue;
+    }
+
+    var displayName = String(parts[1] || '').trim();
+    var lat = parseFloat(parts[2]);
+    var lon = parseFloat(parts[3]);
+    var radius = parseFloat(parts[4]);
+    if (!displayName || isNaN(lat) || isNaN(lon) || isNaN(radius) || radius &lt;= 0) {
+      continue;
+    }
+
+    var distance = haversine(targetLat, targetLon, lat, lon);
+    if (distance &lt;= radius &amp;&amp; distance &lt; bestDistance) {
+      bestDistance = distance;
+      bestName = displayName;
+    }
+  }
+}
+
+if (bestName) {
+  setGlobal('CURRENT_PLACE_NAME', bestName);
+}</Str><Str sr="arg1" ve="3" /><Int sr="arg2" val="1" /><Int sr="arg3" val="45" /></Action>
+    <Action sr="act61" ve="7"><code>38</code></Action>
+    <Action sr="act62" ve="7">
       <code>410</code>
       <Str sr="arg0" ve="3">%log_file</Str>
       <Str sr="arg1" ve="3">%CANDIDATE_SINCE_TIMESTAMP;%CURRENT_PLACE_LAT;%CURRENT_PLACE_LON;%CURRENT_PLACE_ID;%CURRENT_PLACE_NAME</Str>
       <Int sr="arg2" val="1" />
       <Int sr="arg3" val="1" />
     </Action>
-    <Action sr="act58" ve="7">
+    <Action sr="act63" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LAT</Str>
       <Str sr="arg1" ve="3">0</Str>
@@ -1121,7 +1176,7 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act59" ve="7">
+    <Action sr="act64" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LON</Str>
       <Str sr="arg1" ve="3">0</Str>
@@ -1131,7 +1186,7 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act60" ve="7">
+    <Action sr="act65" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_SINCE</Str>
       <Str sr="arg1" ve="3">0</Str>
@@ -1141,7 +1196,7 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act61" ve="7">
+    <Action sr="act66" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_SINCE_TIMESTAMP</Str>
       <Str sr="arg1" ve="3">0</Str>
@@ -1151,7 +1206,7 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="0" />
     </Action>
-    <Action sr="act62" ve="7">
+    <Action sr="act67" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
       <Str sr="arg1" ve="3">0</Str>
@@ -1161,13 +1216,13 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act63" ve="7">
+    <Action sr="act68" ve="7">
       <code>38</code>
     </Action>
-    <Action sr="act64" ve="7">
+    <Action sr="act69" ve="7">
       <code>43</code>
     </Action>
-    <Action sr="act65" ve="7">
+    <Action sr="act70" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LAT</Str>
       <Str sr="arg1" ve="3">%cur_lat</Str>
@@ -1177,7 +1232,7 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act66" ve="7">
+    <Action sr="act71" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LON</Str>
       <Str sr="arg1" ve="3">%cur_lon</Str>
@@ -1187,7 +1242,7 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act67" ve="7">
+    <Action sr="act72" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_SINCE</Str>
       <Str sr="arg1" ve="3">%now_seconds</Str>
@@ -1197,7 +1252,7 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act68" ve="7">
+    <Action sr="act73" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_SINCE_TIMESTAMP</Str>
       <Str sr="arg1" ve="3">%timestamp</Str>
@@ -1207,7 +1262,7 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="0" />
     </Action>
-    <Action sr="act69" ve="7">
+    <Action sr="act74" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
       <Str sr="arg1" ve="3">1</Str>
@@ -1217,10 +1272,10 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act70" ve="7">
+    <Action sr="act75" ve="7">
       <code>38</code>
     </Action>
-    <Action sr="act71" ve="7">
+    <Action sr="act76" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%LAST_SAMPLE_TIME</Str>
       <Str sr="arg1" ve="3">%now_seconds</Str>
@@ -1230,13 +1285,13 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act72" ve="7">
+    <Action sr="act77" ve="7">
       <code>38</code>
     </Action>
-    <Action sr="act73" ve="7">
+    <Action sr="act78" ve="7">
       <code>38</code>
     </Action>
-    <Action sr="act74" ve="7">
+    <Action sr="act79" ve="7">
       <code>38</code>
     </Action>
   </Task>
