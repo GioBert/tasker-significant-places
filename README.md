@@ -1,5 +1,7 @@
 # tasker-significant-places
 
+![Tasker Significant Places](docs/assets/hero.png)
+
 `tasker-significant-places` e' un progetto Tasker pensato per costruire un diario semplice dei luoghi in cui il telefono si e' fermato davvero durante la giornata.
 
 L'idea nasce da un'esigenza pratica: non interessa registrare ogni singolo spostamento, ma capire con chiarezza **dove si e' stati** e **quando si e' arrivati in un luogo significativo**. In molte situazioni quotidiane un log di movimento continuo produce troppo rumore: semafori, traffico lento, soste brevi, pause tecniche. Questo progetto cerca invece di estrarre solo le soste che hanno davvero senso nel racconto della giornata.
