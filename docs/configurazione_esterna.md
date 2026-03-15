@@ -110,8 +110,8 @@ Significato delle colonne:
 Le decisioni attuali del progetto sono queste:
 
 - i luoghi noti vengono usati solo per il nome
-- il matching avviene solo quando un luogo e' gia' stato confermato
-- se un luogo confermato cade nel raggio di un luogo noto, il nome usato nel CSV deve essere `DISPLAY_NAME`
+- il matching viene applicato sia al primo luogo del giorno in `INIT_SIGNIFICANT_PLACES` sia ai nuovi luoghi confermati successivamente
+- se il primo luogo del giorno o un luogo confermato cade nel raggio di un luogo noto, il nome usato nel CSV deve essere `DISPLAY_NAME`
 - in questo caso non si usa il placeholder `Luogo_n`
 - se piu' luoghi noti sono compatibili, vince quello col centro piu' vicino
 - se nessun luogo noto corrisponde, il sistema continua a usare i nomi automatici
