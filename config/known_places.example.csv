@@ -1,3 +1,9 @@
 PLACE_KEY;DISPLAY_NAME;LAT;LON;RADIUS_METERS
-home;Casa;44.274650;11.689900;80
-work_main;Lavoro XXX;44.273120;11.721220;120
+home;Casa;44.270100;11.690200;40
+work_main;Ufficio Principale;44.381500;11.734900;45
+clinic_branch;Poliambulatorio Centro;44.236800;12.083100;40
+lunch_spot;Pausa Pranzo;44.372400;11.722900;70
+customer_site;Cliente Nord;44.267800;11.683900;100
+weekend_place;Luogo Weekend;44.255200;11.658600;50
+small_town;Paese Collina;44.238000;11.637400;40
+wide_area;Area Ampia;44.276200;11.727100;1000
