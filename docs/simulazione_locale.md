@@ -41,10 +41,10 @@ repository. Un CSV operativo esistente puo' essere usato localmente con
 `--resume-csv` per verificare la futura recovery senza pubblicarne il
 contenuto.
 
-Il modello include controlli raccomandati, come gli intervalli validi di
-latitudine e longitudine e la ricostruzione dal CSV, che non sono ancora
-completi nella configurazione Tasker corrente. Serve quindi anche per definire
-e provare il comportamento di destinazione dei prossimi batch.
+Il modello e la configurazione B005 applicano entrambi intervalli validi di
+latitudine e longitudine e recovery dal CSV. Il modello locale aggiunge casi
+fail-closed per file vuoti, header errati, date incoerenti, ordinamento dei
+timestamp, ID e nomi non validi.
 
 ## Validatore Dell'Export Tasker
 
@@ -80,6 +80,46 @@ python -m unittest discover -s tests -v
 
 I test devono essere eseguiti prima di applicare un batch al telefono e prima
 di versionare un nuovo export Tasker.
+
+Per generare o verificare in modo idempotente B005:
+
+```powershell
+python tools\build_b005_csv_recovery_backup.py `
+  percorso\backup-pre-B005.xml `
+  TestData\B005.xml
+```
+
+Il test manuale di INIT deve riprodurre l'ordine reale:
+`LOAD_CONFIG_DEFAULTS` e solo dopo `INIT_SIGNIFICANT_PLACES`.
+
+## Candidato Con Posizione Sintetica
+
+Per collaudare sul telefono la logica successiva all'acquisizione senza usare
+coordinate reali e' disponibile:
+
+```powershell
+python tools\build_injected_location_test_backup.py `
+  percorso\backup-nativo.xml `
+  TestData\INJ.xml
+```
+
+Il generatore e' destinato esclusivamente a backup completi conservati in area
+privata. Non funziona sull'export pubblico sanitizzato, che non contiene le
+variabili globali radice necessarie.
+
+Il candidato prodotto:
+
+- reindirizza `%LOG_DIR` sotto `TestData/injected-B004`;
+- imposta temporaneamente `%MIN_STOP_MINUTES` a un minuto;
+- sostituisce la sola `Ottieni Posizione v2` del task principale con tre
+  assegnazioni sintetiche;
+- lascia invariati validazione, candidato, scrittura CSV e commit B004;
+- verifica che i commit globali restino successivi a `Scrivi File`.
+
+Prima dell'import servono checkpoint, manifest degli hash e validazione XML.
+Dopo il test bisogna ripristinare il checkpoint e verificare che nessun file
+operativo preesistente sia cambiato. Il file generato puo' contenere variabili
+private ereditate dal backup sorgente e non deve mai entrare in Git.
 
 ## Confine Della Simulazione
 

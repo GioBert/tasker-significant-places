@@ -11,7 +11,7 @@ from pathlib import Path
 
 EXPECTED_TASK_ACTIONS = {
     "LOAD_CONFIG_DEFAULTS": 14,
-    "INIT_SIGNIFICANT_PLACES": 33,
+    "INIT_SIGNIFICANT_PLACES": 82,
     "LOG_SIGNIFICANT_PLACE_SAMPLE": 85,
 }
 
@@ -64,6 +64,14 @@ def validate(xml_path: Path, config_path: Path | None = None) -> list[Finding]:
         if not _has_complete_gps_validation(init_text):
             findings.append(
                 Finding("WARN", "INIT_ACCURACY_UNCHECKED", "daily initialization does not validate GPS accuracy")
+            )
+        if "B005_RECOVERY_V1" not in init_text:
+            findings.append(
+                Finding("WARN", "CSV_RECOVERY_MISSING", "daily initialization does not recover state from an existing CSV")
+            )
+        if "%RECOVERY_STATUS" not in init_text or "%RECOVERY_LAST_ERROR" not in init_text:
+            findings.append(
+                Finding("WARN", "RECOVERY_DIAGNOSTICS_MISSING", "CSV recovery has no persistent status diagnostics")
             )
 
     load = tasks.get("LOAD_CONFIG_DEFAULTS")

@@ -6,6 +6,7 @@ Thumbs.db
 output/
 exports/
 analysis/
+TestData/
 __pycache__/
 *.pyc
 runlog.txt

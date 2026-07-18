@@ -139,23 +139,38 @@ def load_samples(path: Path) -> list[Sample]:
 
 
 def load_records(path: Path) -> list[Record]:
+    lines = [line.strip() for line in path.read_text(encoding="utf-8-sig").splitlines() if line.strip()]
+    if not lines:
+        raise ValueError(f"{path}: empty CSV")
+    if lines[0] != CSV_HEADER:
+        raise ValueError(f"{path}: invalid header")
+
     result: list[Record] = []
-    for line_number, raw_line in enumerate(path.read_text(encoding="utf-8-sig").splitlines(), 1):
-        line = raw_line.strip()
-        if not line or line.startswith("TIMESTAMP;"):
-            continue
+    previous_timestamp: datetime | None = None
+    for line_number, line in enumerate(lines[1:], 2):
         parts = line.split(";")
         if len(parts) != 5:
             raise ValueError(f"{path}:{line_number}: expected 5 columns")
-        result.append(
-            Record(
-                datetime.strptime(parts[0], "%Y-%m-%d %H.%M"),
-                float(parts[1]),
-                float(parts[2]),
-                int(parts[3]),
-                parts[4],
-            )
-        )
+        try:
+            timestamp = datetime.strptime(parts[0], "%Y-%m-%d %H.%M")
+            lat = float(parts[1])
+            lon = float(parts[2])
+            place_id = int(parts[3])
+        except ValueError as error:
+            raise ValueError(f"{path}:{line_number}: invalid field") from error
+        name = parts[4].strip()
+        if timestamp.strftime("%Y-%m-%d %H.%M") != parts[0]:
+            raise ValueError(f"{path}:{line_number}: invalid timestamp format")
+        if previous_timestamp is not None and timestamp < previous_timestamp:
+            raise ValueError(f"{path}:{line_number}: timestamps are not ordered")
+        if not all(isfinite(value) for value in (lat, lon)) or not (-90 <= lat <= 90 and -180 <= lon <= 180):
+            raise ValueError(f"{path}:{line_number}: invalid coordinates")
+        if place_id < 1:
+            raise ValueError(f"{path}:{line_number}: invalid place id")
+        if not name:
+            raise ValueError(f"{path}:{line_number}: empty place name")
+        result.append(Record(timestamp, lat, lon, place_id, name))
+        previous_timestamp = timestamp
     return result
 
 
@@ -205,18 +220,20 @@ class SignificantPlacesSimulator:
         return self._confirm_candidate()
 
     def recover_from_records(self, records: Iterable[Record], day: str) -> bool:
-        valid = [record for record in records if record.timestamp.date().isoformat() == day]
-        if not valid:
+        recovered = list(records)
+        if not recovered:
             return False
-        last = valid[-1]
-        self.records.extend(valid)
+        if any(record.timestamp.date().isoformat() != day for record in recovered):
+            raise ValueError("daily recovery CSV contains records from another day")
+        last = recovered[-1]
+        self.records.extend(recovered)
         self.state = State(
             log_date=day,
             current_lat=last.lat,
             current_lon=last.lon,
             current_id=last.place_id,
             current_name=last.name,
-            place_counter=max(record.place_id for record in valid),
+            place_counter=max(record.place_id for record in recovered),
         )
         return True
 

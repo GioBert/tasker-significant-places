@@ -1,77 +1,77 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <TaskerData sr="" dvi="1" tv="6.6.20">
-  <Profile sr="prof2" ve="2">
-    <cdate>1772982977503</cdate>
-    <edate>1784376876466</edate>
-    <flags>8</flags>
-    <id>2</id>
-    <mid0>5</mid0>
-    <nme>SIGNIFICANT_PLACES_PERIODIC_2MIN</nme>
-    <Time sr="con0">
-      <cname>SIGNIFICANT_PLACES_PERIODIC_2MIN</cname>
-      <fh>0</fh>
-      <fm>0</fm>
-      <rep>2</rep>
-      <repval>2</repval>
-      <th>23</th>
-      <tm>59</tm>
-    </Time>
-  </Profile>
-  <Project sr="proj0" ve="2">
-    <cdate>1773490000000</cdate>
-    <mdate>1784372999907</mdate>
-    <name>SignificantPlaces</name>
-    <pids>2</pids>
-    <tids>3,4,5</tids>
-    <Img sr="icon" ve="2">
-      <nme>mw_maps_place</nme>
-    </Img>
-  </Project>
-  <Task sr="task3">
-    <cdate>1773490000000</cdate>
-    <edate>1784380274797</edate>
-    <id>3</id>
-    <nme>LOAD_CONFIG_DEFAULTS</nme>
-    <pri>100</pri>
-    <Action sr="act0" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%LOG_DIR</Str>
-      <Str sr="arg1" ve="3">/storage/emulated/0/_SignificantPlaces</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act1" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%PLACE_RADIUS_METERS</Str>
-      <Str sr="arg1" ve="3">100</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act10" ve="7">
-      <code>37</code>
-      <ConditionList sr="if">
-        <Condition sr="c0" ve="3">
-          <lhs>%config_file_exists</lhs>
-          <op>2</op>
-          <rhs>true</rhs>
-        </Condition>
-      </ConditionList>
-    </Action>
-    <Action sr="act11" ve="7">
-      <code>417</code>
-      <Str sr="arg0" ve="3">%CONFIG_FILE_PATH</Str>
-      <Str sr="arg1" ve="3">%config_raw</Str>
-      <Int sr="arg2" val="0" />
-    </Action>
-    <Action sr="act12" ve="7">
-      <code>129</code>
-      <Str sr="arg0" ve="3">var raw = String(config_raw || '');
+	<Profile sr="prof2" ve="2">
+		<cdate>1772982977503</cdate>
+		<edate>1784376876466</edate>
+		<flags>8</flags>
+		<id>2</id>
+		<mid0>5</mid0>
+		<nme>SIGNIFICANT_PLACES_PERIODIC_2MIN</nme>
+		<Time sr="con0">
+			<cname>SIGNIFICANT_PLACES_PERIODIC_2MIN</cname>
+			<fh>0</fh>
+			<fm>0</fm>
+			<rep>2</rep>
+			<repval>2</repval>
+			<th>23</th>
+			<tm>59</tm>
+		</Time>
+	</Profile>
+	<Project sr="proj0" ve="2">
+		<cdate>1773490000000</cdate>
+		<mdate>1784372999907</mdate>
+		<name>SignificantPlaces</name>
+		<pids>2</pids>
+		<tids>3,4,5</tids>
+		<Img sr="icon" ve="2">
+			<nme>mw_maps_place</nme>
+		</Img>
+	</Project>
+	<Task sr="task3">
+		<cdate>1773490000000</cdate>
+		<edate>1784380274797</edate>
+		<id>3</id>
+		<nme>LOAD_CONFIG_DEFAULTS</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%LOG_DIR</Str>
+			<Str sr="arg1" ve="3">/storage/emulated/0/_SignificantPlaces</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%PLACE_RADIUS_METERS</Str>
+			<Str sr="arg1" ve="3">100</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act10" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%config_file_exists</lhs>
+					<op>2</op>
+					<rhs>true</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act11" ve="7">
+			<code>417</code>
+			<Str sr="arg0" ve="3">%CONFIG_FILE_PATH</Str>
+			<Str sr="arg1" ve="3">%config_raw</Str>
+			<Int sr="arg2" val="0" />
+		</Action>
+		<Action sr="act12" ve="7">
+			<code>129</code>
+			<Str sr="arg0" ve="3">var raw = String(config_raw || '');
 var errors = 0;
 var applied = 0;
 
@@ -134,192 +134,739 @@ if (applied &gt; 0 &amp;&amp; errors &gt; 0) {
 } else {
   setGlobal('CONFIG_LOAD_STATUS', 'defaults_only');
 }</Str>
-      <Str sr="arg1" ve="3" />
-      <Int sr="arg2" val="1" />
-      <Int sr="arg3" val="45" />
-    </Action>
-    <Action sr="act13" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act2" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%MIN_STOP_MINUTES</Str>
-      <Str sr="arg1" ve="3">5</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act3" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%PLACE_NAME_PREFIX</Str>
-      <Str sr="arg1" ve="3">Luogo_</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act4" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%GPS_MAX_ACCURACY_METERS</Str>
-      <Str sr="arg1" ve="3">50</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act5" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CONFIG_FILE_PATH</Str>
-      <Str sr="arg1" ve="3">/storage/emulated/0/_SignificantPlaces/config/tasker_globals.csv</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act6" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%KNOWN_PLACES_FILE_PATH</Str>
-      <Str sr="arg1" ve="3">/storage/emulated/0/_SignificantPlaces/config/known_places.csv</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act7" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CONFIG_LOAD_STATUS</Str>
-      <Str sr="arg1" ve="3">defaults_only</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act8" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CONFIG_ERROR_COUNT</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act9" ve="7">
-      <code>342</code>
-      <Int sr="arg0" val="5" />
-      <Str sr="arg1" ve="3">%CONFIG_FILE_PATH</Str>
-      <Str sr="arg2" ve="3">%config_file_exists</Str>
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="1" />
-    </Action>
-  </Task>
-  <Task sr="task4">
-    <cdate>1773490000000</cdate>
-    <edate>1784381833182</edate>
-    <id>4</id>
-    <nme>INIT_SIGNIFICANT_PLACES</nme>
-    <pri>100</pri>
-    <Action sr="act0" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%today</Str>
-      <Str sr="arg1" ve="3">%DATE</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act1" ve="7">
-      <code>590</code>
-      <Str sr="arg0" ve="3">%today</Str>
-      <Str sr="arg1" ve="3">-</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-    </Action>
-    <Action sr="act10" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%PLACE_COUNTER</Str>
-      <Str sr="arg1" ve="3">1</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act11" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CURRENT_PLACE_LAT</Str>
-      <Str sr="arg1" ve="3">%gl_latitude</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act12" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CURRENT_PLACE_LON</Str>
-      <Str sr="arg1" ve="3">%gl_longitude</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act13" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CURRENT_PLACE_ID</Str>
-      <Str sr="arg1" ve="3">1</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act14" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CURRENT_PLACE_NAME</Str>
-      <Str sr="arg1" ve="3">%PLACE_NAME_PREFIX%PLACE_COUNTER</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act15" ve="7">
-      <code>342</code>
-      <Int sr="arg0" val="5" />
-      <Str sr="arg1" ve="3">%KNOWN_PLACES_FILE_PATH</Str>
-      <Str sr="arg2" ve="3">%init_known_places_file_exists</Str>
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="1" />
-    </Action>
-    <Action sr="act16" ve="7">
-      <code>37</code>
-      <ConditionList sr="if">
-        <Condition sr="c0" ve="3">
-          <lhs>%init_known_places_file_exists</lhs>
-          <op>2</op>
-          <rhs>true</rhs>
-        </Condition>
-      </ConditionList>
-    </Action>
-    <Action sr="act17" ve="7">
-      <code>417</code>
-      <Str sr="arg0" ve="3">%KNOWN_PLACES_FILE_PATH</Str>
-      <Str sr="arg1" ve="3">%init_known_places_raw</Str>
-      <Int sr="arg2" val="0" />
-    </Action>
-    <Action sr="act18" ve="7">
-      <code>129</code>
-      <Str sr="arg0" ve="3">function haversine(lat1, lon1, lat2, lon2) {
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="45" />
+		</Action>
+		<Action sr="act13" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%MIN_STOP_MINUTES</Str>
+			<Str sr="arg1" ve="3">5</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act3" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%PLACE_NAME_PREFIX</Str>
+			<Str sr="arg1" ve="3">Luogo_</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act4" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%GPS_MAX_ACCURACY_METERS</Str>
+			<Str sr="arg1" ve="3">50</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act5" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CONFIG_FILE_PATH</Str>
+			<Str sr="arg1" ve="3">/storage/emulated/0/_SignificantPlaces/config/tasker_globals.csv</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act6" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%KNOWN_PLACES_FILE_PATH</Str>
+			<Str sr="arg1" ve="3">/storage/emulated/0/_SignificantPlaces/config/known_places.csv</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act7" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CONFIG_LOAD_STATUS</Str>
+			<Str sr="arg1" ve="3">defaults_only</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act8" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CONFIG_ERROR_COUNT</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act9" ve="7">
+			<code>342</code>
+			<Int sr="arg0" val="5" />
+			<Str sr="arg1" ve="3">%CONFIG_FILE_PATH</Str>
+			<Str sr="arg2" ve="3">%config_file_exists</Str>
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="1" />
+		</Action>
+	</Task>
+	<Task sr="task4">
+		<cdate>1773490000000</cdate>
+		<edate>1784381833182</edate>
+		<id>4</id>
+		<nme>INIT_SIGNIFICANT_PLACES</nme>
+		<pri>100</pri>
+		<Action sr="act0" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%today</Str>
+			<Str sr="arg1" ve="3">%DATE</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>590</code>
+			<Str sr="arg0" ve="3">%today</Str>
+			<Str sr="arg1" ve="3">-</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%year</Str>
+			<Str sr="arg1" ve="3">20%today3</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act3" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%month</Str>
+			<Str sr="arg1" ve="3">%today2</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act4" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%log_file</Str>
+			<Str sr="arg1" ve="3">%LOG_DIR/%year/%month/%year-%today2-%today1-significant_places.csv</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act5" ve="7">
+			<code>409</code>
+			<se>false</se>
+			<Str sr="arg0" ve="3">%LOG_DIR/%year/%month</Str>
+			<Int sr="arg1" val="1" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="1" />
+		</Action>
+		<Action sr="act6" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%recovery_status</Str>
+			<Str sr="arg1" ve="3">unchecked</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act7" ve="7">
+			<code>342</code>
+			<Int sr="arg0" val="5" />
+			<Str sr="arg1" ve="3">%log_file</Str>
+			<Str sr="arg2" ve="3">%rec_type</Str>
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="1" />
+		</Action>
+		<Action sr="act8" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%rec_type</lhs>
+					<op>12</op>
+					<rhs />
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act9" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%recovery_status</Str>
+			<Str sr="arg1" ve="3">malformed</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act10" ve="7">
+			<code>417</code>
+			<Str sr="arg0" ve="3">%log_file</Str>
+			<Str sr="arg1" ve="3">%rec_raw</Str>
+			<Int sr="arg2" val="0" />
+		</Action>
+		<Action sr="act11" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%rec_lat</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act12" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%rec_lon</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act13" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%rec_id</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act14" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%rec_name</Str>
+			<Str sr="arg1" ve="3">__unset__</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act15" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%rec_counter</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act16" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%rec_error</Str>
+			<Str sr="arg1" ve="3">js_not_completed</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act17" ve="7">
+			<code>129</code>
+			<Str sr="arg0" ve="3">// B005_RECOVERY_V1
+var raw = String(rec_raw || '').replace(/^\uFEFF/, '');
+var lines = raw.split(/\r?\n/).map(function(line) {
+  return String(line || '').trim();
+}).filter(function(line) {
+  return line.length &gt; 0;
+});
+var expectedHeader = 'TIMESTAMP;LAT;LON;PLACE_ID;NAME';
+var pathDateMatch = /(\d{4}-\d{2}-\d{2})-significant_places\.csv$/.exec(String(log_file || ''));
+var expectedDate = pathDateMatch ? pathDateMatch[1] : '';
+var previousTimestamp = '';
+var maxId = 0;
+var lastRecord = null;
+var valid = true;
+var errorCode = expectedDate ? 'empty_or_header' : 'path_date';
+
+recovery_status = 'malformed';
+
+function validTimestamp(value) {
+  var match = /^(\d{4})-(\d{2})-(\d{2}) (\d{2})\.(\d{2})$/.exec(value);
+  if (!match || value.substring(0, 10) !== expectedDate) return false;
+  var y = Number(match[1]);
+  var m = Number(match[2]);
+  var d = Number(match[3]);
+  var h = Number(match[4]);
+  var min = Number(match[5]);
+  var parsed = new Date(y, m - 1, d, h, min, 0, 0);
+  return parsed.getFullYear() === y &amp;&amp;
+         parsed.getMonth() === m - 1 &amp;&amp;
+         parsed.getDate() === d &amp;&amp;
+         parsed.getHours() === h &amp;&amp;
+         parsed.getMinutes() === min;
+}
+
+if (expectedDate &amp;&amp; lines.length === 1 &amp;&amp; lines[0] === expectedHeader) {
+  recovery_status = 'header_only';
+  errorCode = '';
+} else if (expectedDate &amp;&amp; lines.length &gt; 1 &amp;&amp; lines[0] === expectedHeader) {
+  for (var i = 1; i &lt; lines.length; i++) {
+    var parts = lines[i].split(';');
+    if (parts.length !== 5) {
+      valid = false;
+      errorCode = 'fields';
+      break;
+    }
+    var timestamp = String(parts[0] || '').trim();
+    var lat = Number(parts[1]);
+    var lon = Number(parts[2]);
+    var idText = String(parts[3] || '').trim();
+    var id = Number(idText);
+    var name = String(parts[4] || '').trim();
+    if (!validTimestamp(timestamp)) {
+      valid = false;
+      errorCode = 'timestamp';
+      break;
+    }
+    if (previousTimestamp &amp;&amp; timestamp &lt; previousTimestamp) {
+      valid = false;
+      errorCode = 'order';
+      break;
+    }
+    if (!isFinite(lat) || lat &lt; -90 || lat &gt; 90) {
+      valid = false;
+      errorCode = 'latitude';
+      break;
+    }
+    if (!isFinite(lon) || lon &lt; -180 || lon &gt; 180) {
+      valid = false;
+      errorCode = 'longitude';
+      break;
+    }
+    if (!/^[1-9]\d*$/.test(idText) || !isFinite(id)) {
+      valid = false;
+      errorCode = 'id';
+      break;
+    }
+    if (!name) {
+      valid = false;
+      errorCode = 'name';
+      break;
+    }
+    previousTimestamp = timestamp;
+    maxId = Math.max(maxId, id);
+    lastRecord = {lat: lat, lon: lon, id: id, name: name};
+  }
+  if (valid &amp;&amp; lastRecord) {
+    rec_lat = String(lastRecord.lat);
+    rec_lon = String(lastRecord.lon);
+    rec_id = String(lastRecord.id);
+    rec_name = lastRecord.name;
+    rec_counter = String(maxId);
+    recovery_status = 'recovered';
+    errorCode = '';
+  }
+}
+
+rec_error = errorCode || 'none';
+
+if (recovery_status === 'malformed') {
+  var errorCount = parseInt(global('RECOVERY_ERROR_COUNT'), 10);
+  if (!isFinite(errorCount) || errorCount &lt; 0) errorCount = 0;
+  setGlobal('RECOVERY_ERROR_COUNT', String(errorCount + 1));
+  setGlobal('RECOVERY_STATUS', 'malformed');
+  setGlobal('RECOVERY_LAST_ERROR', errorCode);
+} else {
+  setGlobal('RECOVERY_LAST_ERROR', '');
+}</Str>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="45" />
+		</Action>
+		<Action sr="act18" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%RECOVERY_LAST_ERROR</Str>
+			<Str sr="arg1" ve="3">%rec_error</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act19" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%recovery_status</lhs>
+					<op>2</op>
+					<rhs>recovered</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act20" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%PLACE_COUNTER</Str>
+			<Str sr="arg1" ve="3">%rec_counter</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act21" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CURRENT_PLACE_LAT</Str>
+			<Str sr="arg1" ve="3">%rec_lat</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act22" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CURRENT_PLACE_LON</Str>
+			<Str sr="arg1" ve="3">%rec_lon</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act23" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CURRENT_PLACE_ID</Str>
+			<Str sr="arg1" ve="3">%rec_id</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act24" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CURRENT_PLACE_NAME</Str>
+			<Str sr="arg1" ve="3">%rec_name</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act25" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_PLACE_LAT</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act26" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_PLACE_LON</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act27" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_SINCE</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act28" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_SINCE_TIMESTAMP</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act29" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act30" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%LAST_SAMPLE_TIME</Str>
+			<Str sr="arg1" ve="3">%TIMES</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act31" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CURRENT_LOG_DATE</Str>
+			<Str sr="arg1" ve="3">%DATE</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act32" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%RECOVERY_STATUS</Str>
+			<Str sr="arg1" ve="3">recovered</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act33" ve="7">
+			<code>137</code>
+			<Int sr="arg0" val="0" />
+			<Str sr="arg1" ve="3" />
+		</Action>
+		<Action sr="act34" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act35" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%recovery_status</lhs>
+					<op>2</op>
+					<rhs>malformed</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act36" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%RECOVERY_STATUS</Str>
+			<Str sr="arg1" ve="3">malformed</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act37" ve="7">
+			<code>137</code>
+			<Int sr="arg0" val="1" />
+			<Str sr="arg1" ve="3" />
+		</Action>
+		<Action sr="act38" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act39" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act40" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%recovery_status</lhs>
+					<op>2</op>
+					<rhs>unchecked</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act41" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%recovery_status</Str>
+			<Str sr="arg1" ve="3">new</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act42" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act43" ve="7">
+			<code>366</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%gl_latitude
+1. Latitudine
+&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%gl_longitude
+2. Longitudine
+&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+				</Vals>
+			</Bundle>
+			<Int sr="arg1" val="20" />
+			<Str sr="arg2" ve="3" />
+			<Str sr="arg3" ve="3" />
+			<Str sr="arg4" ve="3" />
+			<Str sr="arg5" ve="3" />
+			<Int sr="arg6" val="1" />
+			<Int sr="arg7" val="0" />
+			<Str sr="arg8" ve="3" />
+			<Int sr="arg9" val="1" />
+		</Action>
+		<Action sr="act44" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%timestamp</Str>
+			<Str sr="arg1" ve="3">%year-%today2-%today1 %TIME</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act45" ve="7">
+			<code>129</code>
+			<Str sr="arg0" ve="3">var lat = parseFloat(gl_latitude);
+var lon = parseFloat(gl_longitude);
+var acc = parseFloat(gl_coordinates_accuracy);
+var maxAcc = parseFloat(global('GPS_MAX_ACCURACY_METERS'));
+
+var valid =
+  isFinite(lat) &amp;&amp;
+  isFinite(lon) &amp;&amp;
+  isFinite(acc) &amp;&amp;
+  isFinite(maxAcc) &amp;&amp;
+  lat &gt;= -90 &amp;&amp;
+  lat &lt;= 90 &amp;&amp;
+  lon &gt;= -180 &amp;&amp;
+  lon &lt;= 180 &amp;&amp;
+  acc &gt;= 0 &amp;&amp;
+  maxAcc &gt; 0 &amp;&amp;
+  acc &lt;= maxAcc;
+
+setGlobal('FIX_VALID', valid ? 'true' : 'false');
+setGlobal('GPS_ACCURACY', isFinite(acc) ? String(acc) : '');</Str>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="45" />
+		</Action>
+		<Action sr="act46" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<bool0>And</bool0>
+				<bool1>And</bool1>
+				<Condition sr="c0" ve="3">
+					<lhs>%gl_latitude</lhs>
+					<op>12</op>
+					<rhs />
+				</Condition>
+				<Condition sr="c1" ve="3">
+					<lhs>%gl_longitude</lhs>
+					<op>12</op>
+					<rhs />
+				</Condition>
+				<Condition sr="c2" ve="3">
+					<lhs>%FIX_VALID</lhs>
+					<op>2</op>
+					<rhs>true</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act47" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%PLACE_COUNTER</Str>
+			<Str sr="arg1" ve="3">1</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act48" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CURRENT_PLACE_LAT</Str>
+			<Str sr="arg1" ve="3">%gl_latitude</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act49" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CURRENT_PLACE_LON</Str>
+			<Str sr="arg1" ve="3">%gl_longitude</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act50" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CURRENT_PLACE_ID</Str>
+			<Str sr="arg1" ve="3">1</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act51" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CURRENT_PLACE_NAME</Str>
+			<Str sr="arg1" ve="3">%PLACE_NAME_PREFIX%PLACE_COUNTER</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act52" ve="7">
+			<code>342</code>
+			<Int sr="arg0" val="5" />
+			<Str sr="arg1" ve="3">%KNOWN_PLACES_FILE_PATH</Str>
+			<Str sr="arg2" ve="3">%init_known_places_file_exists</Str>
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="1" />
+		</Action>
+		<Action sr="act53" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%init_known_places_file_exists</lhs>
+					<op>2</op>
+					<rhs>true</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act54" ve="7">
+			<code>417</code>
+			<Str sr="arg0" ve="3">%KNOWN_PLACES_FILE_PATH</Str>
+			<Str sr="arg1" ve="3">%init_known_places_raw</Str>
+			<Int sr="arg2" val="0" />
+		</Action>
+		<Action sr="act55" ve="7">
+			<code>129</code>
+			<Str sr="arg0" ve="3">function haversine(lat1, lon1, lat2, lon2) {
   var R = 6371000;
   var toRad = function(v) { return v * Math.PI / 180; };
   var dLat = toRad(lat2 - lat1);
@@ -369,394 +916,357 @@ if (!isNaN(targetLat) &amp;&amp; !isNaN(targetLon) &amp;&amp; raw.trim()) {
 if (bestName) {
   setGlobal('CURRENT_PLACE_NAME', bestName);
 }</Str>
-      <Str sr="arg1" ve="3" />
-      <Int sr="arg2" val="1" />
-      <Int sr="arg3" val="45" />
-    </Action>
-    <Action sr="act19" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act2" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%year</Str>
-      <Str sr="arg1" ve="3">20%today3</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act20" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LAT</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act21" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LON</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act22" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_SINCE</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act23" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_SINCE_TIMESTAMP</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act24" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act25" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%LAST_SAMPLE_TIME</Str>
-      <Str sr="arg1" ve="3">%TIMES</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act26" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CURRENT_LOG_DATE</Str>
-      <Str sr="arg1" ve="3">%DATE</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act27" ve="7">
-      <code>342</code>
-      <Int sr="arg0" val="5" />
-      <Str sr="arg1" ve="3">%log_file</Str>
-      <Str sr="arg2" ve="3">%file_exists</Str>
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="1" />
-    </Action>
-    <Action sr="act28" ve="7">
-      <code>37</code>
-      <ConditionList sr="if">
-        <Condition sr="c0" ve="3">
-          <lhs>%file_exists</lhs>
-          <op>2</op>
-          <rhs>false</rhs>
-        </Condition>
-      </ConditionList>
-    </Action>
-    <Action sr="act29" ve="7">
-      <code>410</code>
-      <Str sr="arg0" ve="3">%log_file</Str>
-      <Str sr="arg1" ve="3">TIMESTAMP;LAT;LON;PLACE_ID;NAME</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="1" />
-    </Action>
-    <Action sr="act3" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%month</Str>
-      <Str sr="arg1" ve="3">%today2</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act30" ve="7">
-      <code>410</code>
-      <Str sr="arg0" ve="3">%log_file</Str>
-      <Str sr="arg1" ve="3">%timestamp;%CURRENT_PLACE_LAT;%CURRENT_PLACE_LON;%CURRENT_PLACE_ID;%CURRENT_PLACE_NAME</Str>
-      <Int sr="arg2" val="1" />
-      <Int sr="arg3" val="1" />
-    </Action>
-    <Action sr="act31" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act32" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act4" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%log_file</Str>
-      <Str sr="arg1" ve="3">%LOG_DIR/%year/%month/%year-%today2-%today1-significant_places.csv</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act5" ve="7">
-      <code>409</code>
-      <se>false</se>
-      <Str sr="arg0" ve="3">%LOG_DIR/%year/%month</Str>
-      <Int sr="arg1" val="1" />
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="1" />
-    </Action>
-    <Action sr="act6" ve="7">
-      <code>366</code>
-      <Bundle sr="arg0">
-        <Vals sr="val">
-          <net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%gl_latitude
-1. Latitudine
-&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%gl_longitude
-2. Longitudine
-&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
-          <net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
-        </Vals>
-      </Bundle>
-      <Int sr="arg1" val="20" />
-      <Str sr="arg2" ve="3" />
-      <Str sr="arg3" ve="3" />
-      <Str sr="arg4" ve="3" />
-      <Str sr="arg5" ve="3" />
-      <Int sr="arg6" val="1" />
-      <Int sr="arg7" val="0" />
-      <Str sr="arg8" ve="3" />
-      <Int sr="arg9" val="1" />
-    </Action>
-    <Action sr="act7" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%timestamp</Str>
-      <Str sr="arg1" ve="3">%year-%today2-%today1 %TIME</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act8" ve="7">
-      <code>129</code>
-      <Str sr="arg0" ve="3">var lat = parseFloat(gl_latitude);
-var lon = parseFloat(gl_longitude);
-var acc = parseFloat(gl_coordinates_accuracy);
-var maxAcc = parseFloat(global('GPS_MAX_ACCURACY_METERS'));
-
-var valid =
-  isFinite(lat) &amp;&amp;
-  isFinite(lon) &amp;&amp;
-  isFinite(acc) &amp;&amp;
-  isFinite(maxAcc) &amp;&amp;
-  lat &gt;= -90 &amp;&amp;
-  lat &lt;= 90 &amp;&amp;
-  lon &gt;= -180 &amp;&amp;
-  lon &lt;= 180 &amp;&amp;
-  acc &gt;= 0 &amp;&amp;
-  maxAcc &gt; 0 &amp;&amp;
-  acc &lt;= maxAcc;
-
-setGlobal('FIX_VALID', valid ? 'true' : 'false');
-setGlobal('GPS_ACCURACY', isFinite(acc) ? String(acc) : '');</Str>
-      <Str sr="arg1" ve="3" />
-      <Int sr="arg2" val="1" />
-      <Int sr="arg3" val="45" />
-    </Action>
-    <Action sr="act9" ve="7">
-      <code>37</code>
-      <ConditionList sr="if">
-        <bool0>And</bool0>
-        <bool1>And</bool1>
-        <Condition sr="c0" ve="3">
-          <lhs>%gl_latitude</lhs>
-          <op>12</op>
-          <rhs />
-        </Condition>
-        <Condition sr="c1" ve="3">
-          <lhs>%gl_longitude</lhs>
-          <op>12</op>
-          <rhs />
-        </Condition>
-        <Condition sr="c2" ve="3">
-          <lhs>%FIX_VALID</lhs>
-          <op>2</op>
-          <rhs>true</rhs>
-        </Condition>
-      </ConditionList>
-    </Action>
-  </Task>
-  <Task sr="task5">
-    <cdate>1773490000000</cdate>
-    <edate>1784383932478</edate>
-    <id>5</id>
-    <nme>LOG_SIGNIFICANT_PLACE_SAMPLE</nme>
-    <pri>6</pri>
-    <Action sr="act0" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%today</Str>
-      <Str sr="arg1" ve="3">%DATE</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act1" ve="7">
-      <code>590</code>
-      <Str sr="arg0" ve="3">%today</Str>
-      <Str sr="arg1" ve="3">-</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-    </Action>
-    <Action sr="act10" ve="7">
-      <code>137</code>
-      <Int sr="arg0" val="0" />
-      <Str sr="arg1" ve="3" />
-    </Action>
-    <Action sr="act11" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act12" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%log_file</Str>
-      <Str sr="arg1" ve="3">%LOG_DIR/%year/%month/%year-%today2-%today1-significant_places.csv</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act13" ve="7">
-      <code>409</code>
-      <se>false</se>
-      <Str sr="arg0" ve="3">%LOG_DIR/%year/%month</Str>
-      <Int sr="arg1" val="1" />
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="1" />
-    </Action>
-    <Action sr="act14" ve="7">
-      <code>342</code>
-      <Int sr="arg0" val="5" />
-      <Str sr="arg1" ve="3">%log_file</Str>
-      <Str sr="arg2" ve="3">%file_exists</Str>
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="1" />
-    </Action>
-    <Action sr="act15" ve="7">
-      <code>37</code>
-      <ConditionList sr="if">
-        <Condition sr="c0" ve="3">
-          <lhs>%file_exists</lhs>
-          <op>2</op>
-          <rhs>false</rhs>
-        </Condition>
-      </ConditionList>
-    </Action>
-    <Action sr="act16" ve="7">
-      <code>410</code>
-      <Str sr="arg0" ve="3">%log_file</Str>
-      <Str sr="arg1" ve="3">TIMESTAMP;LAT;LON;PLACE_ID;NAME</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="1" />
-    </Action>
-    <Action sr="act17" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act18" ve="7">
-      <code>366</code>
-      <Bundle sr="arg0">
-        <Vals sr="val">
-          <net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%gl_latitude
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="45" />
+		</Action>
+		<Action sr="act56" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act57" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_PLACE_LAT</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act58" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_PLACE_LON</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act59" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_SINCE</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act60" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_SINCE_TIMESTAMP</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act61" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act62" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%LAST_SAMPLE_TIME</Str>
+			<Str sr="arg1" ve="3">%TIMES</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act63" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CURRENT_LOG_DATE</Str>
+			<Str sr="arg1" ve="3">%DATE</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act64" ve="7">
+			<code>342</code>
+			<Int sr="arg0" val="5" />
+			<Str sr="arg1" ve="3">%log_file</Str>
+			<Str sr="arg2" ve="3">%file_exists</Str>
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="1" />
+		</Action>
+		<Action sr="act65" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%recovery_status</lhs>
+					<op>2</op>
+					<rhs>new</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act66" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%file_exists</lhs>
+					<op>12</op>
+					<rhs />
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act67" ve="7">
+			<code>137</code>
+			<Int sr="arg0" val="1" />
+			<Str sr="arg1" ve="3" />
+		</Action>
+		<Action sr="act68" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act69" ve="7">
+			<code>410</code>
+			<Str sr="arg0" ve="3">%log_file</Str>
+			<Str sr="arg1" ve="3">TIMESTAMP;LAT;LON;PLACE_ID;NAME</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="1" />
+		</Action>
+		<Action sr="act70" ve="7">
+			<code>410</code>
+			<Str sr="arg0" ve="3">%log_file</Str>
+			<Str sr="arg1" ve="3">%timestamp;%CURRENT_PLACE_LAT;%CURRENT_PLACE_LON;%CURRENT_PLACE_ID;%CURRENT_PLACE_NAME</Str>
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="1" />
+		</Action>
+		<Action sr="act71" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%RECOVERY_STATUS</Str>
+			<Str sr="arg1" ve="3">new</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act72" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act73" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%recovery_status</lhs>
+					<op>2</op>
+					<rhs>header_only</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act74" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%file_exists</lhs>
+					<op>12</op>
+					<rhs />
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act75" ve="7">
+			<code>410</code>
+			<Str sr="arg0" ve="3">%log_file</Str>
+			<Str sr="arg1" ve="3">%timestamp;%CURRENT_PLACE_LAT;%CURRENT_PLACE_LON;%CURRENT_PLACE_ID;%CURRENT_PLACE_NAME</Str>
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="1" />
+		</Action>
+		<Action sr="act76" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%RECOVERY_STATUS</Str>
+			<Str sr="arg1" ve="3">header_only</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act77" ve="7">
+			<code>137</code>
+			<Int sr="arg0" val="0" />
+			<Str sr="arg1" ve="3" />
+		</Action>
+		<Action sr="act78" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act79" ve="7">
+			<code>137</code>
+			<Int sr="arg0" val="1" />
+			<Str sr="arg1" ve="3" />
+		</Action>
+		<Action sr="act80" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act81" ve="7">
+			<code>38</code>
+		</Action>
+	</Task>
+	<Task sr="task5">
+		<cdate>1773490000000</cdate>
+		<edate>1784383932478</edate>
+		<id>5</id>
+		<nme>LOG_SIGNIFICANT_PLACE_SAMPLE</nme>
+		<pri>6</pri>
+		<Action sr="act0" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%today</Str>
+			<Str sr="arg1" ve="3">%DATE</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act1" ve="7">
+			<code>590</code>
+			<Str sr="arg0" ve="3">%today</Str>
+			<Str sr="arg1" ve="3">-</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+		</Action>
+		<Action sr="act10" ve="7">
+			<code>137</code>
+			<Int sr="arg0" val="0" />
+			<Str sr="arg1" ve="3" />
+		</Action>
+		<Action sr="act11" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act12" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%log_file</Str>
+			<Str sr="arg1" ve="3">%LOG_DIR/%year/%month/%year-%today2-%today1-significant_places.csv</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act13" ve="7">
+			<code>409</code>
+			<se>false</se>
+			<Str sr="arg0" ve="3">%LOG_DIR/%year/%month</Str>
+			<Int sr="arg1" val="1" />
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="1" />
+		</Action>
+		<Action sr="act14" ve="7">
+			<code>342</code>
+			<Int sr="arg0" val="5" />
+			<Str sr="arg1" ve="3">%log_file</Str>
+			<Str sr="arg2" ve="3">%file_exists</Str>
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="1" />
+		</Action>
+		<Action sr="act15" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%file_exists</lhs>
+					<op>2</op>
+					<rhs>false</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act16" ve="7">
+			<code>410</code>
+			<Str sr="arg0" ve="3">%log_file</Str>
+			<Str sr="arg1" ve="3">TIMESTAMP;LAT;LON;PLACE_ID;NAME</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="1" />
+		</Action>
+		<Action sr="act17" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act18" ve="7">
+			<code>366</code>
+			<Bundle sr="arg0">
+				<Vals sr="val">
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES>&lt;StringArray sr=""&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;%gl_latitude
 1. Latitudine
 &lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES0&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;%gl_longitude
 2. Longitudine
 &lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES1&gt;&lt;_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;%gl_coordinates_accuracy
 3. Precisione Lat, Lon
 In metri&lt;/_array_net.dinglisch.android.tasker.RELEVANT_VARIABLES2&gt;&lt;/StringArray&gt;</net.dinglisch.android.tasker.RELEVANT_VARIABLES>
-          <net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
-        </Vals>
-      </Bundle>
-      <Int sr="arg1" val="20" />
-      <Str sr="arg2" ve="3" />
-      <Str sr="arg3" ve="3" />
-      <Str sr="arg4" ve="3" />
-      <Str sr="arg5" ve="3" />
-      <Int sr="arg6" val="1" />
-      <Int sr="arg7" val="0" />
-      <Str sr="arg8" ve="3" />
-      <Int sr="arg9" val="1" />
-    </Action>
-    <Action sr="act19" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%timestamp</Str>
-      <Str sr="arg1" ve="3">%year-%today2-%today1 %TIME</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act2" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%year</Str>
-      <Str sr="arg1" ve="3">20%today3</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act20" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%now_seconds</Str>
-      <Str sr="arg1" ve="3">%TIMES</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act21" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%cur_lat</Str>
-      <Str sr="arg1" ve="3">%gl_latitude</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act22" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%cur_lon</Str>
-      <Str sr="arg1" ve="3">%gl_longitude</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act23" ve="7">
-      <code>129</code>
-      <Str sr="arg0" ve="3">var lat = parseFloat(cur_lat);
+					<net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>[Ljava.lang.String;</net.dinglisch.android.tasker.RELEVANT_VARIABLES-type>
+				</Vals>
+			</Bundle>
+			<Int sr="arg1" val="20" />
+			<Str sr="arg2" ve="3" />
+			<Str sr="arg3" ve="3" />
+			<Str sr="arg4" ve="3" />
+			<Str sr="arg5" ve="3" />
+			<Int sr="arg6" val="1" />
+			<Int sr="arg7" val="0" />
+			<Str sr="arg8" ve="3" />
+			<Int sr="arg9" val="1" />
+		</Action>
+		<Action sr="act19" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%timestamp</Str>
+			<Str sr="arg1" ve="3">%year-%today2-%today1 %TIME</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act2" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%year</Str>
+			<Str sr="arg1" ve="3">20%today3</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act20" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%now_seconds</Str>
+			<Str sr="arg1" ve="3">%TIMES</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act21" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%cur_lat</Str>
+			<Str sr="arg1" ve="3">%gl_latitude</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act22" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%cur_lon</Str>
+			<Str sr="arg1" ve="3">%gl_longitude</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act23" ve="7">
+			<code>129</code>
+			<Str sr="arg0" ve="3">var lat = parseFloat(cur_lat);
 var lon = parseFloat(cur_lon);
 var acc = parseFloat(gl_coordinates_accuracy);
 var maxAcc = parseFloat(global('GPS_MAX_ACCURACY_METERS'));
@@ -776,43 +1286,43 @@ var valid =
 
 setGlobal('FIX_VALID', valid ? 'true' : 'false');
 setGlobal('GPS_ACCURACY', isFinite(acc) ? String(acc) : '');</Str>
-      <Str sr="arg1" ve="3" />
-      <Int sr="arg2" val="1" />
-      <Int sr="arg3" val="45" />
-    </Action>
-    <Action sr="act24" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%GPS_ACCURACY</Str>
-      <Str sr="arg1" ve="3">%GPS_ACCURACY</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act25" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%FIX_VALID</Str>
-      <Str sr="arg1" ve="3">%FIX_VALID</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act26" ve="7">
-      <code>37</code>
-      <ConditionList sr="if">
-        <Condition sr="c0" ve="3">
-          <lhs>%FIX_VALID</lhs>
-          <op>2</op>
-          <rhs>true</rhs>
-        </Condition>
-      </ConditionList>
-    </Action>
-    <Action sr="act27" ve="7">
-      <code>129</code>
-      <Str sr="arg0" ve="3">function haversine(lat1, lon1, lat2, lon2) {
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="45" />
+		</Action>
+		<Action sr="act24" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%GPS_ACCURACY</Str>
+			<Str sr="arg1" ve="3">%GPS_ACCURACY</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act25" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%FIX_VALID</Str>
+			<Str sr="arg1" ve="3">%FIX_VALID</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act26" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%FIX_VALID</lhs>
+					<op>2</op>
+					<rhs>true</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act27" ve="7">
+			<code>129</code>
+			<Str sr="arg0" ve="3">function haversine(lat1, lon1, lat2, lon2) {
   var R = 6371000;
   var toRad = function(v) { return v * Math.PI / 180; };
   var dLat = toRad(lat2 - lat1);
@@ -839,136 +1349,136 @@ if (!isNaN(lat1) &amp;&amp; !isNaN(lon1) &amp;&amp; !isNaN(lat2) &amp;&amp; !isN
 
 setGlobal('DIST_FROM_CURRENT', String(d));
 setGlobal('AT_CURRENT_PLACE', atCurrent ? 'true' : 'false');</Str>
-      <Str sr="arg1" ve="3" />
-      <Int sr="arg2" val="1" />
-      <Int sr="arg3" val="45" />
-    </Action>
-    <Action sr="act28" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%DIST_FROM_CURRENT</Str>
-      <Str sr="arg1" ve="3">%DIST_FROM_CURRENT</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act29" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%AT_CURRENT_PLACE</Str>
-      <Str sr="arg1" ve="3">%AT_CURRENT_PLACE</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act3" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%month</Str>
-      <Str sr="arg1" ve="3">%today2</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act30" ve="7">
-      <code>37</code>
-      <ConditionList sr="if">
-        <Condition sr="c0" ve="3">
-          <lhs>%AT_CURRENT_PLACE</lhs>
-          <op>2</op>
-          <rhs>true</rhs>
-        </Condition>
-      </ConditionList>
-    </Action>
-    <Action sr="act31" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LAT</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act32" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LON</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act33" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_SINCE</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act34" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_SINCE_TIMESTAMP</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act35" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act36" ve="7">
-      <code>43</code>
-    </Action>
-    <Action sr="act37" ve="7">
-      <code>37</code>
-      <ConditionList sr="if">
-        <Condition sr="c0" ve="3">
-          <lhs>%CANDIDATE_SINCE</lhs>
-          <op>2</op>
-          <rhs>0</rhs>
-        </Condition>
-      </ConditionList>
-    </Action>
-    <Action sr="act38" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LAT</Str>
-      <Str sr="arg1" ve="3">%cur_lat</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act39" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LON</Str>
-      <Str sr="arg1" ve="3">%cur_lon</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act4" ve="7">
-      <code>129</code>
-      <Str sr="arg0" ve="3">function missing(name) {
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="45" />
+		</Action>
+		<Action sr="act28" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DIST_FROM_CURRENT</Str>
+			<Str sr="arg1" ve="3">%DIST_FROM_CURRENT</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act29" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%AT_CURRENT_PLACE</Str>
+			<Str sr="arg1" ve="3">%AT_CURRENT_PLACE</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act3" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%month</Str>
+			<Str sr="arg1" ve="3">%today2</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act30" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%AT_CURRENT_PLACE</lhs>
+					<op>2</op>
+					<rhs>true</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act31" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_PLACE_LAT</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act32" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_PLACE_LON</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act33" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_SINCE</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act34" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_SINCE_TIMESTAMP</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act35" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act36" ve="7">
+			<code>43</code>
+		</Action>
+		<Action sr="act37" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%CANDIDATE_SINCE</lhs>
+					<op>2</op>
+					<rhs>0</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act38" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_PLACE_LAT</Str>
+			<Str sr="arg1" ve="3">%cur_lat</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act39" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_PLACE_LON</Str>
+			<Str sr="arg1" ve="3">%cur_lon</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act4" ve="7">
+			<code>129</code>
+			<Str sr="arg0" ve="3">function missing(name) {
   var v = String(global(name) || '').trim();
   return !v;
 }
@@ -997,46 +1507,46 @@ if (missing('CURRENT_PLACE_LAT') ||
 
 setGlobal('NEED_CONFIG_RELOAD', needConfig ? 'true' : 'false');
 setGlobal('NEED_DAILY_INIT', needInit ? 'true' : 'false');</Str>
-      <Str sr="arg1" ve="3" />
-      <Int sr="arg2" val="1" />
-      <Int sr="arg3" val="45" />
-    </Action>
-    <Action sr="act40" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_SINCE</Str>
-      <Str sr="arg1" ve="3">%now_seconds</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act41" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_SINCE_TIMESTAMP</Str>
-      <Str sr="arg1" ve="3">%timestamp</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act42" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
-      <Str sr="arg1" ve="3">1</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act43" ve="7">
-      <code>43</code>
-    </Action>
-    <Action sr="act44" ve="7">
-      <code>129</code>
-      <Str sr="arg0" ve="3">function haversine(lat1, lon1, lat2, lon2) {
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="45" />
+		</Action>
+		<Action sr="act40" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_SINCE</Str>
+			<Str sr="arg1" ve="3">%now_seconds</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act41" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_SINCE_TIMESTAMP</Str>
+			<Str sr="arg1" ve="3">%timestamp</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act42" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
+			<Str sr="arg1" ve="3">1</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act43" ve="7">
+			<code>43</code>
+		</Action>
+		<Action sr="act44" ve="7">
+			<code>129</code>
+			<Str sr="arg0" ve="3">function haversine(lat1, lon1, lat2, lon2) {
   var R = 6371000;
   var toRad = function(v) { return v * Math.PI / 180; };
   var dLat = toRad(lat2 - lat1);
@@ -1063,187 +1573,187 @@ if (!isNaN(lat1) &amp;&amp; !isNaN(lon1) &amp;&amp; !isNaN(lat2) &amp;&amp; !isN
 
 setGlobal('DIST_FROM_CANDIDATE', String(d));
 setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
-      <Str sr="arg1" ve="3" />
-      <Int sr="arg2" val="1" />
-      <Int sr="arg3" val="45" />
-    </Action>
-    <Action sr="act45" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%DIST_FROM_CANDIDATE</Str>
-      <Str sr="arg1" ve="3">%DIST_FROM_CANDIDATE</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act46" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%AT_CANDIDATE_PLACE</Str>
-      <Str sr="arg1" ve="3">%AT_CANDIDATE_PLACE</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act47" ve="7">
-      <code>37</code>
-      <ConditionList sr="if">
-        <Condition sr="c0" ve="3">
-          <lhs>%AT_CANDIDATE_PLACE</lhs>
-          <op>2</op>
-          <rhs>true</rhs>
-        </Condition>
-      </ConditionList>
-    </Action>
-    <Action sr="act48" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
-      <Str sr="arg1" ve="3">%CANDIDATE_CONFIRM_COUNT + 1</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="1" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act49" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%candidate_age_seconds</Str>
-      <Str sr="arg1" ve="3">%now_seconds - %CANDIDATE_SINCE</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="1" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act5" ve="7">
-      <code>37</code>
-      <ConditionList sr="if">
-        <Condition sr="c0" ve="3">
-          <lhs>%NEED_CONFIG_RELOAD</lhs>
-          <op>2</op>
-          <rhs>true</rhs>
-        </Condition>
-      </ConditionList>
-    </Action>
-    <Action sr="act50" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%candidate_min_seconds</Str>
-      <Str sr="arg1" ve="3">%MIN_STOP_MINUTES * 60</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="1" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act51" ve="7">
-      <code>37</code>
-      <ConditionList sr="if">
-        <bool0>And</bool0>
-        <Condition sr="c0" ve="3">
-          <lhs>%candidate_age_seconds</lhs>
-          <op>7</op>
-          <rhs>%candidate_min_seconds</rhs>
-        </Condition>
-        <Condition sr="c1" ve="3">
-          <lhs>%CANDIDATE_CONFIRM_COUNT</lhs>
-          <op>7</op>
-          <rhs>1</rhs>
-        </Condition>
-      </ConditionList>
-    </Action>
-    <Action sr="act52" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%next_place_counter</Str>
-      <Str sr="arg1" ve="3">%PLACE_COUNTER + 1</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="1" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act53" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%next_place_id</Str>
-      <Str sr="arg1" ve="3">%next_place_counter</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act54" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%next_place_name</Str>
-      <Str sr="arg1" ve="3">%PLACE_NAME_PREFIX%next_place_counter</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act55" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%next_place_lat</Str>
-      <Str sr="arg1" ve="3">%CANDIDATE_PLACE_LAT</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act56" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%next_place_lon</Str>
-      <Str sr="arg1" ve="3">%CANDIDATE_PLACE_LON</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act57" ve="7">
-      <code>342</code>
-      <Int sr="arg0" val="5" />
-      <Str sr="arg1" ve="3">%KNOWN_PLACES_FILE_PATH</Str>
-      <Str sr="arg2" ve="3">%known_places_file_exists</Str>
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="1" />
-    </Action>
-    <Action sr="act58" ve="7">
-      <code>37</code>
-      <ConditionList sr="if">
-        <Condition sr="c0" ve="3">
-          <lhs>%known_places_file_exists</lhs>
-          <op>2</op>
-          <rhs>true</rhs>
-        </Condition>
-      </ConditionList>
-    </Action>
-    <Action sr="act59" ve="7">
-      <code>417</code>
-      <Str sr="arg0" ve="3">%KNOWN_PLACES_FILE_PATH</Str>
-      <Str sr="arg1" ve="3">%known_places_raw</Str>
-      <Int sr="arg2" val="0" />
-    </Action>
-    <Action sr="act6" ve="7">
-      <code>130</code>
-      <Str sr="arg0" ve="3">LOAD_CONFIG_DEFAULTS</Str>
-      <Int sr="arg1" val="6" />
-      <Int sr="arg10" val="0" />
-      <Str sr="arg2" ve="3" />
-      <Str sr="arg3" ve="3" />
-      <Str sr="arg4" ve="3" />
-      <Int sr="arg5" val="0" />
-      <Int sr="arg6" val="0" />
-      <Str sr="arg7" ve="3" />
-      <Int sr="arg8" val="0" />
-      <Int sr="arg9" val="0" />
-    </Action>
-    <Action sr="act60" ve="7">
-      <code>129</code>
-      <Str sr="arg0" ve="3">function haversine(lat1, lon1, lat2, lon2) {
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="45" />
+		</Action>
+		<Action sr="act45" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%DIST_FROM_CANDIDATE</Str>
+			<Str sr="arg1" ve="3">%DIST_FROM_CANDIDATE</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act46" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%AT_CANDIDATE_PLACE</Str>
+			<Str sr="arg1" ve="3">%AT_CANDIDATE_PLACE</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act47" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%AT_CANDIDATE_PLACE</lhs>
+					<op>2</op>
+					<rhs>true</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act48" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
+			<Str sr="arg1" ve="3">%CANDIDATE_CONFIRM_COUNT + 1</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="1" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act49" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%candidate_age_seconds</Str>
+			<Str sr="arg1" ve="3">%now_seconds - %CANDIDATE_SINCE</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="1" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act5" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%NEED_CONFIG_RELOAD</lhs>
+					<op>2</op>
+					<rhs>true</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act50" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%candidate_min_seconds</Str>
+			<Str sr="arg1" ve="3">%MIN_STOP_MINUTES * 60</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="1" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act51" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<bool0>And</bool0>
+				<Condition sr="c0" ve="3">
+					<lhs>%candidate_age_seconds</lhs>
+					<op>7</op>
+					<rhs>%candidate_min_seconds</rhs>
+				</Condition>
+				<Condition sr="c1" ve="3">
+					<lhs>%CANDIDATE_CONFIRM_COUNT</lhs>
+					<op>7</op>
+					<rhs>1</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act52" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%next_place_counter</Str>
+			<Str sr="arg1" ve="3">%PLACE_COUNTER + 1</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="1" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act53" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%next_place_id</Str>
+			<Str sr="arg1" ve="3">%next_place_counter</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act54" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%next_place_name</Str>
+			<Str sr="arg1" ve="3">%PLACE_NAME_PREFIX%next_place_counter</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act55" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%next_place_lat</Str>
+			<Str sr="arg1" ve="3">%CANDIDATE_PLACE_LAT</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act56" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%next_place_lon</Str>
+			<Str sr="arg1" ve="3">%CANDIDATE_PLACE_LON</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act57" ve="7">
+			<code>342</code>
+			<Int sr="arg0" val="5" />
+			<Str sr="arg1" ve="3">%KNOWN_PLACES_FILE_PATH</Str>
+			<Str sr="arg2" ve="3">%known_places_file_exists</Str>
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="1" />
+		</Action>
+		<Action sr="act58" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%known_places_file_exists</lhs>
+					<op>2</op>
+					<rhs>true</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act59" ve="7">
+			<code>417</code>
+			<Str sr="arg0" ve="3">%KNOWN_PLACES_FILE_PATH</Str>
+			<Str sr="arg1" ve="3">%known_places_raw</Str>
+			<Int sr="arg2" val="0" />
+		</Action>
+		<Action sr="act6" ve="7">
+			<code>130</code>
+			<Str sr="arg0" ve="3">LOAD_CONFIG_DEFAULTS</Str>
+			<Int sr="arg1" val="6" />
+			<Int sr="arg10" val="0" />
+			<Str sr="arg2" ve="3" />
+			<Str sr="arg3" ve="3" />
+			<Str sr="arg4" ve="3" />
+			<Int sr="arg5" val="0" />
+			<Int sr="arg6" val="0" />
+			<Str sr="arg7" ve="3" />
+			<Int sr="arg8" val="0" />
+			<Int sr="arg9" val="0" />
+		</Action>
+		<Action sr="act60" ve="7">
+			<code>129</code>
+			<Str sr="arg0" ve="3">function haversine(lat1, lon1, lat2, lon2) {
   var R = 6371000;
   var toRad = function(v) { return v * Math.PI / 180; };
   var dLat = toRad(lat2 - lat1);
@@ -1293,224 +1803,224 @@ if (!isNaN(targetLat) &amp;&amp; !isNaN(targetLon) &amp;&amp; raw.trim()) {
 if (bestName) {
   next_place_name = bestName;
 }</Str>
-      <Str sr="arg1" ve="3" />
-      <Int sr="arg2" val="1" />
-      <Int sr="arg3" val="45" />
-    </Action>
-    <Action sr="act61" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act62" ve="7">
-      <code>410</code>
-      <Str sr="arg0" ve="3">%log_file</Str>
-      <Str sr="arg1" ve="3">%CANDIDATE_SINCE_TIMESTAMP;%next_place_lat;%next_place_lon;%next_place_id;%next_place_name</Str>
-      <Int sr="arg2" val="1" />
-      <Int sr="arg3" val="1" />
-    </Action>
-    <Action sr="act63" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%PLACE_COUNTER</Str>
-      <Str sr="arg1" ve="3">%next_place_counter</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="1" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act64" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CURRENT_PLACE_ID</Str>
-      <Str sr="arg1" ve="3">%next_place_id</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act65" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CURRENT_PLACE_NAME</Str>
-      <Str sr="arg1" ve="3">%next_place_name</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act66" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CURRENT_PLACE_LAT</Str>
-      <Str sr="arg1" ve="3">%next_place_lat</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act67" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CURRENT_PLACE_LON</Str>
-      <Str sr="arg1" ve="3">%next_place_lon</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act68" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LAT</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act69" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LON</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act7" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act70" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_SINCE</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act71" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_SINCE_TIMESTAMP</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act72" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
-      <Str sr="arg1" ve="3">0</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act73" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act74" ve="7">
-      <code>43</code>
-    </Action>
-    <Action sr="act75" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LAT</Str>
-      <Str sr="arg1" ve="3">%cur_lat</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act76" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LON</Str>
-      <Str sr="arg1" ve="3">%cur_lon</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act77" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_SINCE</Str>
-      <Str sr="arg1" ve="3">%now_seconds</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act78" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_SINCE_TIMESTAMP</Str>
-      <Str sr="arg1" ve="3">%timestamp</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="0" />
-    </Action>
-    <Action sr="act79" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
-      <Str sr="arg1" ve="3">1</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act8" ve="7">
-      <code>37</code>
-      <ConditionList sr="if">
-        <Condition sr="c0" ve="3">
-          <lhs>%NEED_DAILY_INIT</lhs>
-          <op>2</op>
-          <rhs>true</rhs>
-        </Condition>
-      </ConditionList>
-    </Action>
-    <Action sr="act80" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act81" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%LAST_SAMPLE_TIME</Str>
-      <Str sr="arg1" ve="3">%now_seconds</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act82" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act83" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act84" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act9" ve="7">
-      <code>130</code>
-      <Str sr="arg0" ve="3">INIT_SIGNIFICANT_PLACES</Str>
-      <Int sr="arg1" val="6" />
-      <Int sr="arg10" val="0" />
-      <Str sr="arg2" ve="3" />
-      <Str sr="arg3" ve="3" />
-      <Str sr="arg4" ve="3" />
-      <Int sr="arg5" val="0" />
-      <Int sr="arg6" val="0" />
-      <Str sr="arg7" ve="3" />
-      <Int sr="arg8" val="0" />
-      <Int sr="arg9" val="0" />
-    </Action>
-  </Task>
+			<Str sr="arg1" ve="3" />
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="45" />
+		</Action>
+		<Action sr="act61" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act62" ve="7">
+			<code>410</code>
+			<Str sr="arg0" ve="3">%log_file</Str>
+			<Str sr="arg1" ve="3">%CANDIDATE_SINCE_TIMESTAMP;%next_place_lat;%next_place_lon;%next_place_id;%next_place_name</Str>
+			<Int sr="arg2" val="1" />
+			<Int sr="arg3" val="1" />
+		</Action>
+		<Action sr="act63" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%PLACE_COUNTER</Str>
+			<Str sr="arg1" ve="3">%next_place_counter</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="1" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act64" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CURRENT_PLACE_ID</Str>
+			<Str sr="arg1" ve="3">%next_place_id</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act65" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CURRENT_PLACE_NAME</Str>
+			<Str sr="arg1" ve="3">%next_place_name</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act66" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CURRENT_PLACE_LAT</Str>
+			<Str sr="arg1" ve="3">%next_place_lat</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act67" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CURRENT_PLACE_LON</Str>
+			<Str sr="arg1" ve="3">%next_place_lon</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act68" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_PLACE_LAT</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act69" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_PLACE_LON</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act7" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act70" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_SINCE</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act71" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_SINCE_TIMESTAMP</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act72" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
+			<Str sr="arg1" ve="3">0</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act73" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act74" ve="7">
+			<code>43</code>
+		</Action>
+		<Action sr="act75" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_PLACE_LAT</Str>
+			<Str sr="arg1" ve="3">%cur_lat</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act76" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_PLACE_LON</Str>
+			<Str sr="arg1" ve="3">%cur_lon</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act77" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_SINCE</Str>
+			<Str sr="arg1" ve="3">%now_seconds</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act78" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_SINCE_TIMESTAMP</Str>
+			<Str sr="arg1" ve="3">%timestamp</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="0" />
+		</Action>
+		<Action sr="act79" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
+			<Str sr="arg1" ve="3">1</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act8" ve="7">
+			<code>37</code>
+			<ConditionList sr="if">
+				<Condition sr="c0" ve="3">
+					<lhs>%NEED_DAILY_INIT</lhs>
+					<op>2</op>
+					<rhs>true</rhs>
+				</Condition>
+			</ConditionList>
+		</Action>
+		<Action sr="act80" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act81" ve="7">
+			<code>547</code>
+			<Str sr="arg0" ve="3">%LAST_SAMPLE_TIME</Str>
+			<Str sr="arg1" ve="3">%now_seconds</Str>
+			<Int sr="arg2" val="0" />
+			<Int sr="arg3" val="0" />
+			<Int sr="arg4" val="0" />
+			<Int sr="arg5" val="3" />
+			<Int sr="arg6" val="1" />
+		</Action>
+		<Action sr="act82" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act83" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act84" ve="7">
+			<code>38</code>
+		</Action>
+		<Action sr="act9" ve="7">
+			<code>130</code>
+			<Str sr="arg0" ve="3">INIT_SIGNIFICANT_PLACES</Str>
+			<Int sr="arg1" val="6" />
+			<Int sr="arg10" val="0" />
+			<Str sr="arg2" ve="3" />
+			<Str sr="arg3" ve="3" />
+			<Str sr="arg4" ve="3" />
+			<Int sr="arg5" val="0" />
+			<Int sr="arg6" val="0" />
+			<Str sr="arg7" ve="3" />
+			<Int sr="arg8" val="0" />
+			<Int sr="arg9" val="0" />
+		</Action>
+	</Task>
 </TaskerData>

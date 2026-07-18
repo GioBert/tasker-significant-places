@@ -129,6 +129,70 @@ ibrida.
 - risultati GPS pubblicati soltanto come tempi, errori e dispersioni aggregate
 - dati grezzi e coordinate reali esclusi dal repository
 
+## Run Log E Test Con Posizione Fittizia
+
+Il Run Log nativo di Tasker e' risultato gia' attivo. Il 18 luglio 2026 ne e'
+stata esportata una copia privata per associare gli errori agli ID delle azioni,
+senza pubblicare valori delle variabili o coordinate.
+
+Un test controllato con Mocaction ha usato una configurazione temporanea con:
+
+- output reindirizzato sotto una directory `TestData` sul telefono;
+- `MIN_STOP_MINUTES=1`;
+- checkpoint nativo immediatamente precedente al test;
+- manifest SHA-256 dei file operativi prima e dopo il test.
+
+Android ha ricevuto la posizione fittizia sui provider `gps` e `fused`, con
+accuratezza simulata compatibile con il limite del progetto. Tasker, tuttavia,
+non ha ottenuto un fix utilizzabile tramite l'azione `5.19`, identificata
+nell'XML come `Ottieni Posizione v2` (`code 366`) con timeout di 20 secondi.
+Il Run Log ha registrato 21 `ExitErr` consecutivi durante la sola finestra del
+test, tutti associati all'azione `5.19`.
+
+Dopo l'arresto della posizione fittizia e il ripristino del checkpoint:
+
+- Mocaction e' stata rimossa come app per la posizione fittizia;
+- monitor e allarme periodico sono rimasti attivi;
+- i cicli reali sono tornati a concludersi con `ExitOK`;
+- nessuno dei 126 file preesistenti e' risultato modificato o mancante;
+- l'unico file aggiunto era il CSV isolato di test con la sola intestazione.
+
+Il timeout dimostra che Mocaction non e' un metodo valido, su questo telefono,
+per collaudare il ramo successivo a `Ottieni Posizione v2`. Non dimostra un
+errore del commit transazionale B004, perche' il task non ha raggiunto quel
+ramo. Nei log Android sono comparsi anche riavvii del renderer WebView durante
+la sequenza di timeout; il Run Log identifica pero' `Ottieni Posizione v2` come
+azione primaria in errore, mentre le esecuzioni reali successive terminano
+correttamente.
+
+Per un futuro test sintetico del ramo B004 occorre usare un metodo che produca
+variabili di posizione accettate da Tasker oppure una configurazione temporanea
+che inietti dati sintetici dopo l'azione di acquisizione. La configurazione
+reale non deve essere modificata per adattarla a Mocaction.
+
+### Iniezione Dopo L'Acquisizione
+
+Il ramo B004 e' stato successivamente collaudato con una seconda configurazione
+temporanea. La sola `Ottieni Posizione v2` del task principale e' stata
+sostituita da tre `Imposta Variabile` contenenti latitudine, longitudine e
+accuratezza deliberatamente sintetiche. Tutta la logica successiva e' rimasta
+identica alla configurazione B004.
+
+Risultato:
+
+- una sola riga sintetica aggiunta al CSV isolato;
+- contatore globale incrementato di una unita';
+- ID della riga uguale al contatore confermato;
+- stato globale della posizione uguale ai valori scritti nella riga;
+- timestamp e nome presenti;
+- conteggio e tempi del candidato azzerati dopo il commit;
+- nessuna riga duplicata nei cicli successivi;
+- zero file operativi preesistenti modificati o mancanti dopo il ripristino.
+
+Questo test valida sul runtime Tasker la sequenza B004 `staging locale > Scrivi
+File > commit globale`. Non valida l'acquisizione GPS, che resta coperta dai
+test reali separati.
+
 ## Backup E Ripristino Della Configurazione
 
 Il 18 luglio 2026 e' stato eseguito un test completo e controllato della
@@ -146,9 +210,22 @@ procedura di disaster recovery della configurazione Tasker:
 - due cicli automatici consecutivi conclusi con `ExitOK`;
 - configurazione esterna verificata invariata tramite hash.
 
-Il test conferma la recuperabilita' della configurazione, ma non simula la
-perdita delle variabili. Quest'ultimo scenario resta separato perche' la
-recovery corrente puo' duplicare gli ID quando il CSV giornaliero esiste gia'.
+### Recovery B005 Da CSV Esistente
+
+Il 18 luglio 2026 e' stata validata anche la recovery dello stato dal CSV
+giornaliero. Dopo `LOAD_CONFIG_DEFAULTS`, l'avvio manuale di INIT ha:
+
+- letto un CSV valido con tre record senza modificarlo;
+- impostato `%RECOVERY_STATUS` a `recovered`;
+- ricostruito `%PLACE_COUNTER` al massimo ID esistente;
+- lasciato invariati hash, dimensione e numero di righe;
+- terminato il ramo di recovery prima del fix GPS;
+- mantenuto `MonitorService`, nove allarmi Tasker e cicli periodici `ExitOK`.
+
+I tentativi intermedi hanno verificato anche il comportamento fail-closed:
+gli stop diagnostici non hanno modificato il CSV. Un primo candidato non
+ancora fail-closed aveva aggiunto una riga; la copia preventiva e' stata
+ripristinata byte per byte e la versione e' stata archiviata come fallita.
 
 La procedura operativa completa e' in
 [Backup e ripristino di Tasker](backup_ripristino_tasker.md).

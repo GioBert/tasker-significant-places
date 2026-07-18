@@ -131,25 +131,42 @@ Controllare nell'ordine:
 La verifica deve evitare di riportare coordinate precise nei terminali,
 rapporti o screenshot destinati alla pubblicazione.
 
-## Variabili: Test Separato
+## Variabili E Recovery Dal CSV
 
 La cancellazione delle variabili non fa parte del normale test di ripristino
 della configurazione. Serve invece a simulare una perdita completa dello stato
 operativo.
 
+La configurazione B005 ricostruisce lo stato dal CSV giornaliero esistente.
 Prima di un test di questo tipo:
 
 - creare un backup che includa le variabili;
 - inventariare le variabili appartenenti al progetto;
-- usare una directory CSV di prova oppure correggere prima la recovery dal CSV;
+- usare una directory CSV di prova oppure una copia verificata del CSV reale;
 - evitare `Cancella tutto` se sullo stesso Tasker sono presenti altre
   automazioni;
-- verificare che il contatore venga ricostruito dal CSV esistente e non riparta
-  da zero.
+- eseguire `LOAD_CONFIG_DEFAULTS` prima di avviare manualmente
+  `INIT_SIGNIFICANT_PLACES`;
+- verificare `%RECOVERY_STATUS=recovered` e che il contatore sia uguale al
+  massimo `PLACE_ID` esistente;
+- confrontare hash e numero di righe del CSV prima e dopo.
 
-Nella versione corrente la perdita delle variabili puo' produrre ID duplicati
-se il CSV giornaliero esiste gia'. Il test completo delle variabili deve quindi
-essere rinviato finche' questa recovery non e' stata resa robusta.
+La recovery deve terminare con errore senza scrivere quando il CSV e' vuoto,
+malformato o incoerente. Non ripetere INIT dopo uno stop: acquisire prima Run
+Log e variabili `%RECOVERY_*`.
+
+## Backup Essenziali Sul Telefono
+
+La radice `Tasker/configs/user` viene mantenuta breve:
+
+- `backup.xml`: backup automatico Tasker;
+- `backup-2026-07-18-pre-hardening-v4.xml`: sicurezza iniziale;
+- `OK4.xml`: B004 validato;
+- `PRE5.xml`: rollback pre-B005;
+- `OK5.xml`: B005 runtime validato.
+
+Checkpoint intermedi, candidati e prove fallite restano in sottocartelle
+datate di `archive`; vengono spostati, non cancellati.
 
 ## Recovery Dopo Arresto Forzato O Riavvio
 
@@ -161,3 +178,26 @@ essere rinviato finche' questa recovery non e' stata resa robusta.
 
 Sul dispositivo di test queste condizioni e impostazioni sono descritte in
 [Validazione sul dispositivo di test](validazione_dispositivo_test.md).
+
+## Raccolta Privata Del Run Log
+
+Il Run Log permette di identificare profilo, task, azione e stato
+(`ExitOK`, `ExitErr`, `Err`, `Exception`) senza modificare l'automazione.
+
+Procedura verificata con Tasker 6.6.20:
+
+1. aprire `Menu > Monitoraggio > Avvia Registro`;
+2. verificare che l'interruttore in alto a destra sia attivo;
+3. lasciare il registro attivo durante il normale utilizzo;
+4. per acquisire uno snapshot, selezionare `Menu > Visualizzatore Esterno`;
+5. scegliere un editor di testo locale senza memorizzarlo come scelta
+   predefinita;
+6. salvare temporaneamente il file sotto una directory `TestData`, mai nella
+   cartella `config`;
+7. copiarlo nell'area privata locale esclusa da Git e verificare l'hash;
+8. rimuovere dal telefono soltanto la copia temporanea esportata.
+
+Non usare `Cancella Cronologia` prima di avere acquisito il periodo da
+analizzare. Il Run Log puo' includere i valori assunti dalle variabili dopo
+l'esecuzione delle azioni: va quindi trattato come dato privato anche quando
+non mostra coordinate nella schermata iniziale.

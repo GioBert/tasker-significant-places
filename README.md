@@ -116,7 +116,11 @@ Il prototipo attuale:
 - conferma il candidato dopo il tempo minimo richiesto
 - usa nel CSV il timestamp di nascita del candidato quando un nuovo luogo viene confermato
 - scrive nel CSV solo i luoghi confermati
-- gestisce una prima forma di recovery operativo su config minima mancante e cambio giorno
+- recupera dal CSV giornaliero luogo corrente e massimo `PLACE_ID` senza
+  duplicare record;
+- interrompe l'inizializzazione prima della scrittura se il CSV esistente e'
+  vuoto, malformato o incoerente;
+- espone stato e diagnostica persistenti tramite le variabili `%RECOVERY_*`
 
 ### Prossimi passi prioritari
 

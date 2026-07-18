@@ -241,7 +241,103 @@ Test:
 - `MonitorService` attivo con `crashCount=0` e allarme periodico presente;
 - nessun `ExitErr` o task malformato osservato.
 
-Esito: **mantenuto; osservazione durante il normale utilizzo**.
+Verifica sintetica successiva:
+
+- una configurazione temporanea ha reindirizzato l'output sotto `TestData` e
+  ridotto a un minuto la sola soglia del test;
+- Mocaction ha alimentato Android sui provider `gps` e `fused`, ma l'azione
+  `5.19` (`Ottieni Posizione v2`) e' andata in timeout dopo 20 secondi;
+- il Run Log ha associato tutti i 21 `ExitErr` della finestra di test alla
+  stessa azione di acquisizione;
+- il ramo di conferma, `Scrivi File` e commit globale B004 non e' stato
+  raggiunto;
+- dopo il ripristino del checkpoint, i cicli reali sono tornati `ExitOK` e i
+  file operativi preesistenti sono risultati invariati.
+
+Questa prova non modifica l'esito strutturale del batch, ma lascia aperta la
+validazione funzionale del ramo di nuova posizione. Mocaction non va usata per
+considerare quel ramo collaudato su questo dispositivo.
+
+Validazione funzionale successiva:
+
+- aggiunto `tools/build_injected_location_test_backup.py`, che genera da un
+  backup nativo un candidato temporaneo con output isolato e tre valori di
+  posizione sintetici al posto di `Ottieni Posizione v2`;
+- il generatore richiede esattamente 85 azioni B004 e produce 87 azioni,
+  verificando che i cinque commit globali restino dopo `Scrivi File`;
+- 15 test locali superati, incluso il controllo automatico del candidato
+  iniettato;
+- sul telefono e' stata scritta una sola riga sintetica e lo stato globale e'
+  risultato coerente con la riga;
+- candidato azzerato e nessuna duplicazione osservata;
+- ripristino da `PREM.xml` completato con monitor e allarme attivi;
+- zero file preesistenti modificati o mancanti nel confronto SHA-256;
+- backup di prova archiviati sotto
+  `archive/2026-07-18-location-tests` sul telefono.
+
+Esito: **mantenuto; validazione runtime del ramo transazionale superata in
+ambiente sintetico isolato**.
+
+### B005 - Recovery Dal CSV Giornaliero - 18 Luglio 2026
+
+Ambito:
+
+- task `INIT_SIGNIFICANT_PLACES`;
+- ricostruzione dello stato dopo import, perdita delle variabili o riavvio;
+- protezione dei CSV esistenti e diagnostica persistente.
+
+Modifiche:
+
+- se il CSV del giorno esiste, viene letto e validato prima del fix GPS;
+- l'ultimo record ripristina luogo corrente, ID e nome, mentre il massimo
+  `PLACE_ID` diventa `%PLACE_COUNTER` per evitare collisioni;
+- un CSV con sola intestazione viene inizializzato senza duplicare l'header;
+- file vuoti, header errati, righe malformate, date incoerenti, coordinate non
+  finite o fuori intervallo, ID non positivi e nomi vuoti causano uno stop con
+  errore prima della scrittura;
+- un secondo `Test File` impedisce di creare o appendere se lo stato del file
+  e il ramo scelto sono incoerenti;
+- aggiunte `%RECOVERY_STATUS`, `%RECOVERY_ERROR_COUNT` e
+  `%RECOVERY_LAST_ERROR`;
+- aggiunto `tools/build_b005_csv_recovery_backup.py` e reso rigoroso il replay
+  CSV del simulatore locale.
+
+Riferimenti Tasker:
+
+- guida ufficiale `Test File`: un test fallito cancella la variabile risultato;
+- guida ufficiale `Variables`: una variabile non inizializzata resta letterale;
+- guide ufficiali `Read File`, `JavaScriptlet`, `If`, `Stop` e `Write File`.
+
+Checkpoint:
+
+- `PRE5.xml`: rollback immediato pre-B005;
+- `OK5.xml`: backup nativo della configurazione runtime validata;
+- `OK4.xml`: checkpoint B004 precedente;
+- tentativi intermedi conservati, non cancellati, nelle cartelle archivio;
+- copie complete e log con dati reali conservati soltanto nella TestData
+  privata locale.
+
+Test e anomalie intercettate:
+
+- il primo candidato usava un controllo booleano non supportato per
+  `Test File` e aggiungeva una riga; il CSV originale e' stato ripristinato
+  byte per byte dalla copia preventiva e il candidato e' stato ritirato;
+- i candidati successivi hanno terminato fail-closed senza modificare il CSV,
+  permettendo di isolare semantica del risultato, controllo di flusso e ordine
+  di inizializzazione;
+- il test manuale corretto richiede prima `LOAD_CONFIG_DEFAULTS`, come avviene
+  nel flusso reale, e poi `INIT_SIGNIFICANT_PLACES`;
+- recovery finale: `%RECOVERY_STATUS=recovered`, `%PLACE_COUNTER=3`, CSV
+  invariato byte per byte, `MonitorService` attivo e nove allarmi Tasker;
+- task periodico successivo concluso con `ExitOK`;
+- 20 test locali superati e validatore XML senza errori o warning.
+
+Nota: il checkpoint runtime `OK5.xml` contiene una diagnostica cosmetica che,
+in assenza di errore, puo' mostrare il riferimento locale letterale. Il
+generatore e l'export pubblico successivi usano il valore esplicito `none`.
+La recovery e i dati non sono influenzati.
+
+Esito: **mantenuto; recovery runtime da CSV esistente superata**.
 
 ## Modello Per I Batch Successivi
 
