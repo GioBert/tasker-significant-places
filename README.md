@@ -97,6 +97,8 @@ Questo rende il log piu' vicino all'orario reale di arrivo, pur mantenendo la sc
 - `docs/comportamento_operativo.md`
 - `docs/validazione_dispositivo_test.md`
 - `docs/backup_ripristino_tasker.md`
+- `docs/registro_modifiche_tasker.md`
+- `docs/simulazione_locale.md`
 
 ### Stato attuale
 

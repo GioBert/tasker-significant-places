@@ -6,6 +6,8 @@ Thumbs.db
 output/
 exports/
 analysis/
+__pycache__/
+*.pyc
 runlog.txt
 *_significant_places.csv
 config/known_places.csv

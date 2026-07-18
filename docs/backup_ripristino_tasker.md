@@ -13,6 +13,44 @@ Il backup Tasker e i file esterni del progetto sono due insiemi distinti:
 - `_SignificantPlaces` contiene configurazione esterna e CSV operativi e deve
   essere salvata separatamente.
 
+## Metodo Supportato Per Le Modifiche
+
+Le modifiche operative devono essere eseguite nell'editor di Tasker, seguendo
+la guida ufficiale e l'Help della singola azione:
+
+- [Task Edit](https://tasker.joaoapps.com/userguide/en/activity_taskedit.html)
+- [Action Edit](https://tasker.joaoapps.com/userguide/en/activity_actionedit.html)
+- [Data Backup](https://tasker.joaoapps.com/userguide/en/help/ah_data_backup.html)
+
+Gli XML esportati vengono usati per backup, confronto, revisione e
+versionamento. Non esiste uno schema XML pubblico che garantisca la sicurezza
+della modifica manuale dei nodi interni; l'editing diretto dell'XML non e'
+quindi il metodo ordinario per cambiare la configurazione attiva.
+
+ADB e terminale possono essere usati per navigare nell'interfaccia, trasferire
+i backup, calcolare hash, leggere log e verificare monitor e allarmi.
+
+## Modifiche A Batch
+
+Le correzioni vengono raggruppate in batch coerenti, evitando sia modifiche
+isolate eccessivamente lente sia pacchetti troppo grandi da diagnosticare.
+
+Per ogni batch sono sufficienti questi passaggi:
+
+1. definire l'elenco breve delle modifiche e consultare la documentazione
+   ufficiale delle azioni coinvolte;
+2. creare un solo backup checkpoint prima del batch;
+3. registrare il batch nel
+   [Registro delle modifiche Tasker](registro_modifiche_tasker.md);
+4. applicare le modifiche nell'interfaccia Tasker;
+5. eseguire un controllo rapido di profilo, task, scrittura e Run Log;
+6. osservare il funzionamento per un periodo proporzionato al rischio;
+7. proseguire con il batch successivo oppure ripristinare il checkpoint.
+
+Non serve ripetere l'intero test di disaster recovery per ogni batch. Il test
+completo si ripete soltanto dopo modifiche strutturali, problemi di recovery o
+prima di una release considerata stabile.
+
 ## Backup Preventivo
 
 1. Aprire Tasker e applicare eventuali modifiche con la spunta nella barra
