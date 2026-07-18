@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import argparse
-import re
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path
@@ -12,7 +11,7 @@ from pathlib import Path
 
 EXPECTED_TASK_ACTIONS = {
     "LOAD_CONFIG_DEFAULTS": 14,
-    "INIT_SIGNIFICANT_PLACES": 32,
+    "INIT_SIGNIFICANT_PLACES": 33,
     "LOG_SIGNIFICANT_PLACE_SAMPLE": 80,
 }
 
@@ -61,8 +60,8 @@ def validate(xml_path: Path, config_path: Path | None = None) -> list[Finding]:
         for variable in ("%gl_latitude", "%gl_longitude"):
             if variable not in conditions:
                 findings.append(Finding("ERROR", "INIT_COORDINATE_CHECK", f"missing condition for {variable}"))
-        init_text = ET.tostring(init, encoding="unicode")
-        if "%gl_coordinates_accuracy" not in init_text:
+        init_text = "\n".join(init.itertext())
+        if not _has_complete_gps_validation(init_text):
             findings.append(
                 Finding("WARN", "INIT_ACCURACY_UNCHECKED", "daily initialization does not validate GPS accuracy")
             )
@@ -91,14 +90,16 @@ def validate(xml_path: Path, config_path: Path | None = None) -> list[Finding]:
             findings.append(
                 Finding("WARN", "STATE_BEFORE_WRITE", "confirmed-place state is updated before the CSV record write")
             )
-        main_text = ET.tostring(main, encoding="unicode")
-        if "lat &lt;" not in main_text and "lat <" not in main_text:
+        main_text = "\n".join(main.itertext())
+        if not _has_complete_gps_validation(main_text):
             findings.append(
                 Finding("WARN", "GPS_RANGE_UNCHECKED", "main GPS validation does not enforce coordinate ranges")
             )
-        if "%CANDIDATE_CONFIRM_COUNT" in main_text and not re.search(
-            r"<lhs>%CANDIDATE_CONFIRM_COUNT</lhs>", main_text
-        ):
+        counter_is_used = any(
+            condition.findtext("lhs") == "%CANDIDATE_CONFIRM_COUNT"
+            for condition in main.findall("./Action/ConditionList/Condition")
+        )
+        if "%CANDIDATE_CONFIRM_COUNT" in main_text and not counter_is_used:
             findings.append(
                 Finding("WARN", "CONFIRM_COUNT_UNUSED", "candidate count is incremented but not used as a condition")
             )
@@ -146,6 +147,25 @@ def _first_csv_record_write_index(actions: list[ET.Element]) -> int | None:
         if ";%CURRENT_PLACE_LAT;" in value:
             return index
     return None
+
+
+def _has_complete_gps_validation(text: str) -> bool:
+    required_fragments = (
+        "GPS_MAX_ACCURACY_METERS",
+        "isFinite(lat)",
+        "isFinite(lon)",
+        "isFinite(acc)",
+        "isFinite(maxAcc)",
+        "lat >= -90",
+        "lat <= 90",
+        "lon >= -180",
+        "lon <= 180",
+        "acc >= 0",
+        "maxAcc > 0",
+        "acc <= maxAcc",
+        "setGlobal('FIX_VALID'",
+    )
+    return all(fragment in text for fragment in required_fragments)
 
 
 def main() -> int:

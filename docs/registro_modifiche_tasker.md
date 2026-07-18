@@ -49,6 +49,141 @@ Note:
 - le criticita' applicative note non sono state ancora corrette e saranno
   distribuite in batch successivi.
 
+### B001 - Allineamento Dei Fallback E Controllo Coordinate - 18 Luglio 2026
+
+Ambito:
+
+- task `LOAD_CONFIG_DEFAULTS`;
+- task `INIT_SIGNIFICANT_PLACES`.
+
+Modifiche:
+
+- fallback interno `MIN_STOP_MINUTES` allineato da 1 a 5 minuti;
+- fallback interno `GPS_MAX_ACCURACY_METERS` allineato da 200 a 50 metri;
+- ripristinato il controllo congiunto che richiede sia `%gl_latitude` sia
+  `%gl_longitude` impostate prima di considerare inizializzata la posizione.
+
+Riferimenti Tasker:
+
+- guida ufficiale `Variable Set`;
+- guida ufficiale `Action Edit`, incluse le condizioni delle azioni.
+
+Checkpoint:
+
+- baseline pre-hardening B000 conservata localmente;
+- backup nativo post-B001 creato sul telefono e copiato nell'area privata
+  locale;
+- integrita' verificata tramite SHA-256, conservato soltanto nel contesto
+  locale.
+
+Test:
+
+- ricontrollo visuale delle tre modifiche dopo chiusura e riapertura di
+  Tasker;
+- `MonitorService` verificato attivo;
+- backup post-B001 valido: un profilo, tre task, 126 azioni e 29 variabili;
+- validatore locale: struttura e collegamenti validi;
+- assenti gli errori e gli avvisi relativi alle tre correzioni B001;
+- rimangono quattro avvisi noti, fuori dall'ambito di questo batch.
+
+Esito: **mantenuto; osservazione durante il normale utilizzo**.
+
+### B002 - Validazione Completa Del Fix GPS - 18 Luglio 2026
+
+Ambito:
+
+- task `INIT_SIGNIFICANT_PLACES`;
+- task `LOG_SIGNIFICANT_PLACE_SAMPLE`;
+- validatore XML e simulatore locali.
+
+Modifiche:
+
+- aggiunta all'inizializzazione la stessa validazione del fix usata nel ciclo
+  principale;
+- richiesti latitudine, longitudine, accuratezza e soglia numeriche e finite;
+- latitudine ammessa nell'intervallo inclusivo da -90 a 90;
+- longitudine ammessa nell'intervallo inclusivo da -180 a 180;
+- accuratezza ammessa da zero alla soglia configurata;
+- soglia di accuratezza richiesta finita e maggiore di zero;
+- mantenuti i controlli B001 su latitudine e longitudine impostate, aggiungendo
+  `%FIX_VALID ~ true` all'`If` di inizializzazione;
+- aggiornati i test locali per coordinate fuori intervallo, accuratezza
+  negativa e valori esattamente sui limiti.
+
+Riferimenti Tasker:
+
+- guida ufficiale `JavaScriptlet`;
+- guida ufficiale `JavaScript Support`;
+- guida ufficiale `Flow Control`;
+- guida ufficiale `Task Edit`, inclusa l'aggiunta dopo l'azione selezionata.
+
+Checkpoint:
+
+- backup post-B001 conservato come rollback pre-B002;
+- backup nativo post-B002 creato sul telefono e copiato nell'area privata
+  locale;
+- integrita' verificata tramite SHA-256, conservato soltanto nel contesto
+  locale.
+
+Test:
+
+- ricontrollo integrale dei due JavaScriptlet tramite interfaccia e backup;
+- un profilo, tre task, 127 azioni e 29 variabili nel backup post-B002;
+- struttura XML e collegamenti validi;
+- scomparsi gli avvisi `INIT_ACCURACY_UNCHECKED` e
+  `GPS_RANGE_UNCHECKED`;
+- 12 test locali superati;
+- `MonitorService` attivo con `crashCount=0`;
+- due cicli automatici post-Apply consecutivi conclusi con `ExitOK`;
+- nessuna esecuzione manuale dei task e nessuna posizione di test generata.
+
+Esito: **mantenuto; osservazione durante il normale utilizzo**.
+
+### B003 - Conferma Multipla Del Luogo Candidato - 18 Luglio 2026
+
+Ambito:
+
+- task `LOG_SIGNIFICANT_PLACE_SAMPLE`;
+- condizione di conferma del luogo candidato;
+- validatore XML locale.
+
+Modifiche:
+
+- aggiunta alla condizione sul tempo minimo la richiesta
+  `%CANDIDATE_CONFIRM_COUNT > 1`;
+- un candidato non puo' quindi essere confermato dalla sola osservazione
+  iniziale, anche in presenza di un intervallo temporale lungo;
+- il contatore gia' incrementato dall'automazione diventa parte effettiva
+  della decisione;
+- aggiornato il validatore per controllare strutturalmente l'uso del contatore.
+
+Riferimenti Tasker:
+
+- guida ufficiale `Flow Control` per gli operatori matematici;
+- guida ufficiale `Action Edit` per le condizioni multiple in AND.
+
+Checkpoint:
+
+- backup post-B002 conservato come rollback pre-B003;
+- backup nativo post-B003 creato sul telefono e copiato nell'area privata
+  locale;
+- integrita' verificata tramite SHA-256, conservato soltanto nel contesto
+  locale.
+
+Test:
+
+- verificato `%CANDIDATE_CONFIRM_COUNT > 1` nell'interfaccia e nel backup;
+- intercettato e corretto prima dell'Apply un doppio simbolo `%` nel nome
+  della variabile;
+- struttura XML e collegamenti validi;
+- scomparso l'avviso `CONFIRM_COUNT_UNUSED`;
+- 13 test locali superati e scansione privacy dell'export pubblico senza
+  corrispondenze;
+- `MonitorService` attivo con `crashCount=0` e allarme periodico presente;
+- due cicli automatici post-Apply consecutivi conclusi con `ExitOK`.
+
+Esito: **mantenuto; osservazione durante il normale utilizzo**.
+
 ## Modello Per I Batch Successivi
 
 ```text

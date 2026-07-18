@@ -42,7 +42,18 @@ class SimulatorTests(unittest.TestCase):
     def test_invalid_coordinate_range_is_rejected(self) -> None:
         simulator = SignificantPlacesSimulator(self.config)
         self.assertEqual(simulator.process(sample(0, 91, 0)).event, "invalid_fix")
+        self.assertEqual(simulator.process(sample(0, 0, 181)).event, "invalid_fix")
         self.assertEqual(simulator.records, [])
+
+    def test_negative_accuracy_is_rejected(self) -> None:
+        simulator = SignificantPlacesSimulator(self.config)
+        self.assertEqual(simulator.process(sample(0, 0, 0, -1)).event, "invalid_fix")
+        self.assertEqual(simulator.records, [])
+
+    def test_coordinate_and_accuracy_boundaries_are_accepted(self) -> None:
+        simulator = SignificantPlacesSimulator(self.config)
+        result = simulator.process(sample(0, 90, 180, self.config.gps_max_accuracy_meters))
+        self.assertEqual(result.event, "day_initialized")
 
     def test_short_stop_is_discarded_on_return(self) -> None:
         simulator = SignificantPlacesSimulator(self.config)
@@ -93,13 +104,23 @@ class ValidatorTests(unittest.TestCase):
         findings = validate(ROOT / "significant_places_tasker.xml", ROOT / "config/tasker_globals.csv")
         self.assertFalse([finding for finding in findings if finding.level == "ERROR"])
         warning_codes = {finding.code for finding in findings if finding.level == "WARN"}
-        self.assertIn("FALLBACK_MISMATCH", warning_codes)
+        self.assertNotIn("FALLBACK_MISMATCH", warning_codes)
+        self.assertNotIn("INIT_ACCURACY_UNCHECKED", warning_codes)
+        self.assertNotIn("GPS_RANGE_UNCHECKED", warning_codes)
+        self.assertNotIn("CONFIRM_COUNT_UNUSED", warning_codes)
         self.assertIn("STATE_BEFORE_WRITE", warning_codes)
 
     def test_missing_longitude_condition_is_blocking(self) -> None:
         tree = ET.parse(ROOT / "significant_places_tasker.xml")
         init = next(task for task in tree.getroot().findall("Task") if task.findtext("nme") == "INIT_SIGNIFICANT_PLACES")
-        condition_list = init.find("./Action/ConditionList")
+        condition_list = next(
+            condition_list
+            for condition_list in init.findall("./Action/ConditionList")
+            if any(
+                condition.findtext("lhs") == "%gl_longitude"
+                for condition in condition_list.findall("Condition")
+            )
+        )
         longitude = next(
             condition for condition in condition_list.findall("Condition") if condition.findtext("lhs") == "%gl_longitude"
         )
@@ -109,6 +130,33 @@ class ValidatorTests(unittest.TestCase):
             tree.write(path, encoding="utf-8", xml_declaration=True)
             findings = validate(path, ROOT / "config/tasker_globals.csv")
         self.assertIn("INIT_COORDINATE_CHECK", {finding.code for finding in findings if finding.level == "ERROR"})
+
+    def test_missing_candidate_count_condition_is_reported(self) -> None:
+        tree = ET.parse(ROOT / "significant_places_tasker.xml")
+        main = next(
+            task
+            for task in tree.getroot().findall("Task")
+            if task.findtext("nme") == "LOG_SIGNIFICANT_PLACE_SAMPLE"
+        )
+        condition_list = next(
+            condition_list
+            for condition_list in main.findall("./Action/ConditionList")
+            if any(
+                condition.findtext("lhs") == "%CANDIDATE_CONFIRM_COUNT"
+                for condition in condition_list.findall("Condition")
+            )
+        )
+        counter = next(
+            condition
+            for condition in condition_list.findall("Condition")
+            if condition.findtext("lhs") == "%CANDIDATE_CONFIRM_COUNT"
+        )
+        condition_list.remove(counter)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "missing-counter-condition.xml"
+            tree.write(path, encoding="utf-8", xml_declaration=True)
+            findings = validate(path, ROOT / "config/tasker_globals.csv")
+        self.assertIn("CONFIRM_COUNT_UNUSED", {finding.code for finding in findings if finding.level == "WARN"})
 
 
 if __name__ == "__main__":
