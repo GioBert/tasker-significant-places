@@ -9,8 +9,11 @@ Nella repo non devono comparire dati personali o dati riconducibili a luoghi rea
 - nessun nome personale reale nei file versionati
 - nessuna coordinata reale nei file di esempio
 - nessun nome reale di luoghi nei file versionati
+- nessun modello, seriale ADB o altro identificativo del dispositivo
 - usare solo placeholder come `USER`, `Luogo_1`, `Luogo_2`
 - usare coordinate fittizie, preferibilmente in mezzo al mare
+- conservare `config/known_places.csv` solo in locale: il file e' escluso tramite `.gitignore`
+- conservare CSV giornalieri e log reali fuori dalla directory del repository
 
 ## Esempi ammessi
 
@@ -23,3 +26,7 @@ TIMESTAMP;LAT;LON;PLACE_ID;NAME
 ## Note di progetto
 
 Queste regole si applicano sia alla documentazione sia ai file tecnici versionati nella repo.
+
+Prima di ogni pubblicazione occorre controllare `git status` e verificare che non siano inclusi file di configurazione privata, CSV giornalieri o log operativi.
+
+Se un dato personale viene inserito in un commit, eliminarlo nel commit successivo non e' sufficiente: occorre considerare compromesso il dato e bonificare anche la cronologia Git pubblicata.
