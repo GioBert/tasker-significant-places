@@ -184,6 +184,65 @@ Test:
 
 Esito: **mantenuto; osservazione durante il normale utilizzo**.
 
+### B004 - Commit Dello Stato Dopo La Scrittura CSV - 18 Luglio 2026
+
+Ambito:
+
+- task `LOG_SIGNIFICANT_PLACE_SAMPLE`;
+- sequenza di conferma e registrazione di un nuovo luogo;
+- generazione e importazione controllata di un backup XML completo.
+
+Modifiche:
+
+- il nuovo contatore, ID, nome e coordinate vengono prima preparati nelle
+  variabili locali `%next_place_*`;
+- il matching con i luoghi conosciuti aggiorna il nome locale preparato;
+- la riga CSV usa esclusivamente i valori locali preparati;
+- le variabili globali vengono aggiornate soltanto nelle cinque azioni
+  successive a `Scrivi File`;
+- se `Scrivi File` fallisce, il comportamento predefinito di Tasker interrompe
+  il task prima del commit globale e conserva candidato e stato precedente;
+- aggiunto un generatore ripetibile del backup candidato B004.
+
+Distribuzione controllata:
+
+- sorgente: backup nativo post-B003 conservato privatamente;
+- candidato generato e validato localmente;
+- nome breve sul telefono: `B004.xml`;
+- importazione tramite `Dati > Ripristinare > Backup manuale`;
+- checkpoint nativo successivo creato come `OK4.xml`;
+- il candidato importato e' stato spostato nell'archivio, senza cancellarlo.
+
+Riferimenti Tasker:
+
+- guida ufficiale `Write File`;
+- guida ufficiale `Action Edit`, parametro `Continue Task After Error`;
+- guida ufficiale delle variabili locali `%err` e `%errmsg`;
+- guida ufficiale `JavaScript Support` per la propagazione delle variabili
+  locali modificate da un JavaScriptlet;
+- guide ufficiali `Data Backup` e `Import Data`.
+
+Checkpoint:
+
+- backup post-B003 conservato come rollback pre-B004;
+- backup nativo post-B004 `OK4.xml` sul telefono;
+- copia privata locale verificata tramite SHA-256;
+- candidato B004 e versioni intermedie conservati negli archivi locali e del
+  telefono.
+
+Test:
+
+- 132 azioni complessive e 85 nel task principale;
+- azione 63 `Scrivi File`, seguita dalle cinque assegnazioni globali 64-68;
+- zero differenze nelle azioni tra candidato e backup nativo riesportato da
+  Tasker;
+- struttura XML e collegamenti validi;
+- tre cicli automatici post-import conclusi con `ExitOK`;
+- `MonitorService` attivo con `crashCount=0` e allarme periodico presente;
+- nessun `ExitErr` o task malformato osservato.
+
+Esito: **mantenuto; osservazione durante il normale utilizzo**.
+
 ## Modello Per I Batch Successivi
 
 ```text

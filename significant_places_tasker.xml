@@ -605,7 +605,7 @@ setGlobal('GPS_ACCURACY', isFinite(acc) ? String(acc) : '');</Str>
   </Task>
   <Task sr="task5">
     <cdate>1773490000000</cdate>
-    <edate>1784382802682</edate>
+    <edate>1784383932478</edate>
     <id>5</id>
     <nme>LOG_SIGNIFICANT_PLACE_SAMPLE</nme>
     <pri>6</pri>
@@ -1155,7 +1155,7 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
     </Action>
     <Action sr="act52" ve="7">
       <code>547</code>
-      <Str sr="arg0" ve="3">%PLACE_COUNTER</Str>
+      <Str sr="arg0" ve="3">%next_place_counter</Str>
       <Str sr="arg1" ve="3">%PLACE_COUNTER + 1</Str>
       <Int sr="arg2" val="0" />
       <Int sr="arg3" val="1" />
@@ -1165,8 +1165,8 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
     </Action>
     <Action sr="act53" ve="7">
       <code>547</code>
-      <Str sr="arg0" ve="3">%CURRENT_PLACE_ID</Str>
-      <Str sr="arg1" ve="3">%PLACE_COUNTER</Str>
+      <Str sr="arg0" ve="3">%next_place_id</Str>
+      <Str sr="arg1" ve="3">%next_place_counter</Str>
       <Int sr="arg2" val="0" />
       <Int sr="arg3" val="0" />
       <Int sr="arg4" val="0" />
@@ -1175,8 +1175,8 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
     </Action>
     <Action sr="act54" ve="7">
       <code>547</code>
-      <Str sr="arg0" ve="3">%CURRENT_PLACE_NAME</Str>
-      <Str sr="arg1" ve="3">%PLACE_NAME_PREFIX%PLACE_COUNTER</Str>
+      <Str sr="arg0" ve="3">%next_place_name</Str>
+      <Str sr="arg1" ve="3">%PLACE_NAME_PREFIX%next_place_counter</Str>
       <Int sr="arg2" val="0" />
       <Int sr="arg3" val="0" />
       <Int sr="arg4" val="0" />
@@ -1185,7 +1185,7 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
     </Action>
     <Action sr="act55" ve="7">
       <code>547</code>
-      <Str sr="arg0" ve="3">%CURRENT_PLACE_LAT</Str>
+      <Str sr="arg0" ve="3">%next_place_lat</Str>
       <Str sr="arg1" ve="3">%CANDIDATE_PLACE_LAT</Str>
       <Int sr="arg2" val="0" />
       <Int sr="arg3" val="0" />
@@ -1195,7 +1195,7 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
     </Action>
     <Action sr="act56" ve="7">
       <code>547</code>
-      <Str sr="arg0" ve="3">%CURRENT_PLACE_LON</Str>
+      <Str sr="arg0" ve="3">%next_place_lon</Str>
       <Str sr="arg1" ve="3">%CANDIDATE_PLACE_LON</Str>
       <Int sr="arg2" val="0" />
       <Int sr="arg3" val="0" />
@@ -1256,8 +1256,8 @@ setGlobal('AT_CANDIDATE_PLACE', atCandidate ? 'true' : 'false');</Str>
 }
 
 var raw = String(known_places_raw || '');
-var targetLat = parseFloat(global('CURRENT_PLACE_LAT'));
-var targetLon = parseFloat(global('CURRENT_PLACE_LON'));
+var targetLat = parseFloat(next_place_lat);
+var targetLon = parseFloat(next_place_lon);
 var bestName = '';
 var bestDistance = Infinity;
 
@@ -1291,7 +1291,7 @@ if (!isNaN(targetLat) &amp;&amp; !isNaN(targetLon) &amp;&amp; raw.trim()) {
 }
 
 if (bestName) {
-  setGlobal('CURRENT_PLACE_NAME', bestName);
+  next_place_name = bestName;
 }</Str>
       <Str sr="arg1" ve="3" />
       <Int sr="arg2" val="1" />
@@ -1303,11 +1303,61 @@ if (bestName) {
     <Action sr="act62" ve="7">
       <code>410</code>
       <Str sr="arg0" ve="3">%log_file</Str>
-      <Str sr="arg1" ve="3">%CANDIDATE_SINCE_TIMESTAMP;%CURRENT_PLACE_LAT;%CURRENT_PLACE_LON;%CURRENT_PLACE_ID;%CURRENT_PLACE_NAME</Str>
+      <Str sr="arg1" ve="3">%CANDIDATE_SINCE_TIMESTAMP;%next_place_lat;%next_place_lon;%next_place_id;%next_place_name</Str>
       <Int sr="arg2" val="1" />
       <Int sr="arg3" val="1" />
     </Action>
     <Action sr="act63" ve="7">
+      <code>547</code>
+      <Str sr="arg0" ve="3">%PLACE_COUNTER</Str>
+      <Str sr="arg1" ve="3">%next_place_counter</Str>
+      <Int sr="arg2" val="0" />
+      <Int sr="arg3" val="1" />
+      <Int sr="arg4" val="0" />
+      <Int sr="arg5" val="3" />
+      <Int sr="arg6" val="1" />
+    </Action>
+    <Action sr="act64" ve="7">
+      <code>547</code>
+      <Str sr="arg0" ve="3">%CURRENT_PLACE_ID</Str>
+      <Str sr="arg1" ve="3">%next_place_id</Str>
+      <Int sr="arg2" val="0" />
+      <Int sr="arg3" val="0" />
+      <Int sr="arg4" val="0" />
+      <Int sr="arg5" val="3" />
+      <Int sr="arg6" val="1" />
+    </Action>
+    <Action sr="act65" ve="7">
+      <code>547</code>
+      <Str sr="arg0" ve="3">%CURRENT_PLACE_NAME</Str>
+      <Str sr="arg1" ve="3">%next_place_name</Str>
+      <Int sr="arg2" val="0" />
+      <Int sr="arg3" val="0" />
+      <Int sr="arg4" val="0" />
+      <Int sr="arg5" val="3" />
+      <Int sr="arg6" val="0" />
+    </Action>
+    <Action sr="act66" ve="7">
+      <code>547</code>
+      <Str sr="arg0" ve="3">%CURRENT_PLACE_LAT</Str>
+      <Str sr="arg1" ve="3">%next_place_lat</Str>
+      <Int sr="arg2" val="0" />
+      <Int sr="arg3" val="0" />
+      <Int sr="arg4" val="0" />
+      <Int sr="arg5" val="3" />
+      <Int sr="arg6" val="1" />
+    </Action>
+    <Action sr="act67" ve="7">
+      <code>547</code>
+      <Str sr="arg0" ve="3">%CURRENT_PLACE_LON</Str>
+      <Str sr="arg1" ve="3">%next_place_lon</Str>
+      <Int sr="arg2" val="0" />
+      <Int sr="arg3" val="0" />
+      <Int sr="arg4" val="0" />
+      <Int sr="arg5" val="3" />
+      <Int sr="arg6" val="1" />
+    </Action>
+    <Action sr="act68" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LAT</Str>
       <Str sr="arg1" ve="3">0</Str>
@@ -1317,7 +1367,7 @@ if (bestName) {
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act64" ve="7">
+    <Action sr="act69" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LON</Str>
       <Str sr="arg1" ve="3">0</Str>
@@ -1327,7 +1377,10 @@ if (bestName) {
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act65" ve="7">
+    <Action sr="act7" ve="7">
+      <code>38</code>
+    </Action>
+    <Action sr="act70" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_SINCE</Str>
       <Str sr="arg1" ve="3">0</Str>
@@ -1337,7 +1390,7 @@ if (bestName) {
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act66" ve="7">
+    <Action sr="act71" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_SINCE_TIMESTAMP</Str>
       <Str sr="arg1" ve="3">0</Str>
@@ -1347,7 +1400,7 @@ if (bestName) {
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="0" />
     </Action>
-    <Action sr="act67" ve="7">
+    <Action sr="act72" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
       <Str sr="arg1" ve="3">0</Str>
@@ -1357,16 +1410,13 @@ if (bestName) {
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act68" ve="7">
+    <Action sr="act73" ve="7">
       <code>38</code>
     </Action>
-    <Action sr="act69" ve="7">
+    <Action sr="act74" ve="7">
       <code>43</code>
     </Action>
-    <Action sr="act7" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act70" ve="7">
+    <Action sr="act75" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LAT</Str>
       <Str sr="arg1" ve="3">%cur_lat</Str>
@@ -1376,7 +1426,7 @@ if (bestName) {
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act71" ve="7">
+    <Action sr="act76" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_PLACE_LON</Str>
       <Str sr="arg1" ve="3">%cur_lon</Str>
@@ -1386,7 +1436,7 @@ if (bestName) {
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act72" ve="7">
+    <Action sr="act77" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_SINCE</Str>
       <Str sr="arg1" ve="3">%now_seconds</Str>
@@ -1396,7 +1446,7 @@ if (bestName) {
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
     </Action>
-    <Action sr="act73" ve="7">
+    <Action sr="act78" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_SINCE_TIMESTAMP</Str>
       <Str sr="arg1" ve="3">%timestamp</Str>
@@ -1406,7 +1456,7 @@ if (bestName) {
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="0" />
     </Action>
-    <Action sr="act74" ve="7">
+    <Action sr="act79" ve="7">
       <code>547</code>
       <Str sr="arg0" ve="3">%CANDIDATE_CONFIRM_COUNT</Str>
       <Str sr="arg1" ve="3">1</Str>
@@ -1415,28 +1465,6 @@ if (bestName) {
       <Int sr="arg4" val="0" />
       <Int sr="arg5" val="3" />
       <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act75" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act76" ve="7">
-      <code>547</code>
-      <Str sr="arg0" ve="3">%LAST_SAMPLE_TIME</Str>
-      <Str sr="arg1" ve="3">%now_seconds</Str>
-      <Int sr="arg2" val="0" />
-      <Int sr="arg3" val="0" />
-      <Int sr="arg4" val="0" />
-      <Int sr="arg5" val="3" />
-      <Int sr="arg6" val="1" />
-    </Action>
-    <Action sr="act77" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act78" ve="7">
-      <code>38</code>
-    </Action>
-    <Action sr="act79" ve="7">
-      <code>38</code>
     </Action>
     <Action sr="act8" ve="7">
       <code>37</code>
@@ -1447,6 +1475,28 @@ if (bestName) {
           <rhs>true</rhs>
         </Condition>
       </ConditionList>
+    </Action>
+    <Action sr="act80" ve="7">
+      <code>38</code>
+    </Action>
+    <Action sr="act81" ve="7">
+      <code>547</code>
+      <Str sr="arg0" ve="3">%LAST_SAMPLE_TIME</Str>
+      <Str sr="arg1" ve="3">%now_seconds</Str>
+      <Int sr="arg2" val="0" />
+      <Int sr="arg3" val="0" />
+      <Int sr="arg4" val="0" />
+      <Int sr="arg5" val="3" />
+      <Int sr="arg6" val="1" />
+    </Action>
+    <Action sr="act82" ve="7">
+      <code>38</code>
+    </Action>
+    <Action sr="act83" ve="7">
+      <code>38</code>
+    </Action>
+    <Action sr="act84" ve="7">
+      <code>38</code>
     </Action>
     <Action sr="act9" ve="7">
       <code>130</code>

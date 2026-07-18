@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
 
 from significant_places_model import Config, KnownPlace, Record, Sample, SignificantPlacesSimulator, load_config, load_samples
+from build_b004_transactional_backup import build as build_b004
 from validate_tasker_xml import validate
 
 
@@ -108,7 +109,7 @@ class ValidatorTests(unittest.TestCase):
         self.assertNotIn("INIT_ACCURACY_UNCHECKED", warning_codes)
         self.assertNotIn("GPS_RANGE_UNCHECKED", warning_codes)
         self.assertNotIn("CONFIRM_COUNT_UNUSED", warning_codes)
-        self.assertIn("STATE_BEFORE_WRITE", warning_codes)
+        self.assertNotIn("STATE_BEFORE_WRITE", warning_codes)
 
     def test_missing_longitude_condition_is_blocking(self) -> None:
         tree = ET.parse(ROOT / "significant_places_tasker.xml")
@@ -157,6 +158,43 @@ class ValidatorTests(unittest.TestCase):
             tree.write(path, encoding="utf-8", xml_declaration=True)
             findings = validate(path, ROOT / "config/tasker_globals.csv")
         self.assertIn("CONFIRM_COUNT_UNUSED", {finding.code for finding in findings if finding.level == "WARN"})
+
+    def test_b004_stages_state_until_after_record_write(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "b004.xml"
+            build_b004(ROOT / "significant_places_tasker.xml", path)
+            tree = ET.parse(path)
+            main = next(
+                task
+                for task in tree.getroot().findall("Task")
+                if task.findtext("nme") == "LOG_SIGNIFICANT_PLACE_SAMPLE"
+            )
+            actions = sorted(
+                main.findall("Action"),
+                key=lambda action: int(action.attrib["sr"].removeprefix("act")),
+            )
+            write_index = next(
+                index
+                for index, action in enumerate(actions)
+                if action.findtext("code") == "410"
+                and "%CANDIDATE_SINCE_TIMESTAMP;" in action.findtext("Str[@sr='arg1']", "")
+            )
+            current_lat_index = next(
+                index
+                for index, action in enumerate(actions)
+                if action.findtext("code") == "547"
+                and action.findtext("Str[@sr='arg0']") == "%CURRENT_PLACE_LAT"
+            )
+            staged_lat_index = next(
+                index
+                for index, action in enumerate(actions)
+                if action.findtext("code") == "547"
+                and action.findtext("Str[@sr='arg0']") == "%next_place_lat"
+            )
+            self.assertLess(staged_lat_index, write_index)
+            self.assertGreater(current_lat_index, write_index)
+            findings = validate(path, ROOT / "config/tasker_globals.csv")
+            self.assertNotIn("STATE_BEFORE_WRITE", {item.code for item in findings})
 
 
 if __name__ == "__main__":
