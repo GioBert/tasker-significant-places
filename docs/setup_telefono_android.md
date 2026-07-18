@@ -21,9 +21,11 @@
 
 L'ambiente di test principale usa:
 
-- `scrcpy 3.3.4`, installato in `C:\Program Files\scrcpy`
-- collegamento USB tramite `adb`
-- telefono di test con Android 13
+- `scrcpy 4.1`, installato in `C:\Program Files\scrcpy`
+- `adb 37.0.0` tramite collegamento USB
+- Xiaomi Redmi 10C NFC, model code `220333QNY`, variante EEA
+- Android 13 / API 33, MIUI `V14.0.10.0.TGEEUXM`
+- Tasker `6.6.20`
 
 Con il debug USB autorizzato sul telefono, il mirroring puo' essere avviato da PowerShell con:
 
@@ -37,15 +39,33 @@ Per controllare prima che il dispositivo sia visibile tramite ADB:
 & 'C:\Program Files\scrcpy\adb.exe' devices
 ```
 
-Il modello, il seriale ADB e gli altri identificativi del dispositivo non devono essere inseriti nella documentazione pubblica o nei log versionati.
+Il modello e la build, non essendo identificativi univoci, possono essere
+documentati. Il seriale ADB e gli altri identificativi univoci del dispositivo
+non devono invece apparire nella documentazione pubblica o nei log versionati.
 
 ## Permessi e impostazioni importanti
 
 - permesso posizione con posizione precisa attiva per Tasker
+- posizione in background consentita
 - accesso ai file necessari
-- esclusione di Tasker dalle ottimizzazioni batteria
-- eventuale avvio automatico di Tasker
+- esclusione di Tasker dalle ottimizzazioni batteria Android
+- risparmio batteria MIUI impostato su `Nessuna restrizione`
+- avvio automatico MIUI abilitato per Tasker
+- `Usa Allarmi Affidabili` impostato su `Sempre`
+- `Avvia Monitor all'Apertura dell'App` abilitato
+- permesso MIUI `Mostra sulla schermata di blocco` consentito
 - opzioni sviluppatore attive se servono test con mock location o debugging USB
+
+Dopo un riavvio completo, sbloccare il telefono almeno una volta: sul dispositivo
+testato `MonitorService` e gli allarmi periodici sono stati ricreati entro 30
+secondi dal primo sblocco senza aprire Tasker.
+
+I risultati aggregati di sensori, GPS, schermo spento e recovery sono descritti
+in [Validazione sul dispositivo di test](validazione_dispositivo_test.md).
+
+Prima di modificare o pulire la configurazione, seguire sempre
+[Backup e ripristino di Tasker](backup_ripristino_tasker.md). Il backup XML di
+Tasker non sostituisce la copia separata della cartella `_SignificantPlaces`.
 
 ## Nota
 

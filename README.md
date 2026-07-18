@@ -95,6 +95,8 @@ Questo rende il log piu' vicino all'orario reale di arrivo, pur mantenendo la sc
 - `docs/mappa_variabili_tasker.md`
 - `docs/configurazione_esterna.md`
 - `docs/comportamento_operativo.md`
+- `docs/validazione_dispositivo_test.md`
+- `docs/backup_ripristino_tasker.md`
 
 ### Stato attuale
 
@@ -117,6 +119,9 @@ Il prototipo attuale:
 ### Prossimi passi prioritari
 
 - continuare i test reali in movimento con questa versione
-- rifinire ulteriormente il comportamento operativo su riavvii e stati sporchi
+- mantenere verificato il recovery dopo riavvio e primo sblocco sul dispositivo
+  di test
 - pulire le globali obsolete ancora presenti nell'ambiente Tasker
+- valutare una strategia ibrida basata su movimento, con fallback periodico e
+  confronto energetico controllato
 - continuare a rifinire e testare il riconoscimento dei luoghi noti e introdurre report giornalieri
