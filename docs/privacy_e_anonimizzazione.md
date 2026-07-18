@@ -9,7 +9,11 @@ Nella repo non devono comparire dati personali o dati riconducibili a luoghi rea
 - nessun nome personale reale nei file versionati
 - nessuna coordinata reale nei file di esempio
 - nessun nome reale di luoghi nei file versionati
-- nessun modello, seriale ADB o altro identificativo del dispositivo
+- modello commerciale, model code, versione Android e build possono essere
+  documentati per rendere riproducibili i test, perche' non identificano il
+  singolo esemplare
+- nessun seriale ADB, IMEI, Android ID, numero telefonico, MAC, IP, SSID,
+  account o altro identificativo univoco del dispositivo o dell'utente
 - usare solo placeholder come `USER`, `Luogo_1`, `Luogo_2`
 - usare coordinate fittizie, preferibilmente in mezzo al mare
 - conservare `config/known_places.csv` solo in locale: il file e' escluso tramite `.gitignore`

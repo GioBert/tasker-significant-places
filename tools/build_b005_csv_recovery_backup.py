@@ -128,6 +128,7 @@ def build(source: Path, destination: Path) -> None:
     main = _task(root, MAIN_TASK)
     actions = sorted(init.findall("Action"), key=_action_index)
     if any(SCRIPT_MARKER in _arg(action, "arg0") for action in actions):
+        _upgrade_existing_recovery(actions)
         _verify(root)
         ET.indent(root, space="\t")
         destination.parent.mkdir(parents=True, exist_ok=True)
@@ -231,7 +232,10 @@ def _verify(root: ET.Element) -> None:
     scripts = [action for action in actions if SCRIPT_MARKER in _arg(action, "arg0")]
     if len(scripts) != 1:
         raise ValueError(f"expected one B005 parser, found {len(scripts)}")
-    if not all(fragment in _arg(scripts[0], "arg0") for fragment in ("maxId", "malformed", "header_only")):
+    if not all(
+        fragment in _arg(scripts[0], "arg0")
+        for fragment in ("maxId", "malformed", "header_only", "errorCode || 'none'")
+    ):
         raise ValueError("B005 parser is incomplete")
 
     recovered_if = _if_index(actions, "%recovery_status", "recovered")
@@ -294,6 +298,19 @@ def _verify(root: ET.Element) -> None:
         raise ValueError("header-only record write is not guarded and ordered")
     if _write_count(actions, "TIMESTAMP;LAT;LON;PLACE_ID;NAME") != 1:
         raise ValueError("header write must occur exactly once in the generated task")
+
+
+def _upgrade_existing_recovery(actions: list[ET.Element]) -> None:
+    scripts = [action for action in actions if SCRIPT_MARKER in _arg(action, "arg0")]
+    if len(scripts) != 1:
+        raise ValueError(f"expected one existing B005 parser, found {len(scripts)}")
+    script = _arg(scripts[0], "arg0")
+    if "errorCode || 'none'" in script:
+        return
+    old = "rec_error = errorCode;"
+    if old not in script:
+        raise ValueError("existing B005 parser has an unknown diagnostic format")
+    _set_arg(scripts[0], "arg0", script.replace(old, "rec_error = errorCode || 'none';", 1))
 
 
 def _replace_initial_write_flow(

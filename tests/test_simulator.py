@@ -470,6 +470,39 @@ class ValidatorTests(unittest.TestCase):
             findings = validate(path, ROOT / "config/tasker_globals.csv")
             self.assertFalse([finding for finding in findings if finding.level == "ERROR"])
 
+    def test_b005_upgrades_the_validated_runtime_diagnostic(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "b11.xml"
+            destination = Path(directory) / "b12.xml"
+            tree = ET.parse(ROOT / "significant_places_tasker.xml")
+            init = next(
+                task
+                for task in tree.getroot().findall("Task")
+                if task.findtext("nme") == "INIT_SIGNIFICANT_PLACES"
+            )
+            parser = next(
+                action
+                for action in init.findall("Action")
+                if B005_SCRIPT_MARKER in action.findtext("Str[@sr='arg0']", "")
+            )
+            script = parser.findtext("Str[@sr='arg0']", "")
+            parser.find("Str[@sr='arg0']").text = script.replace(
+                "rec_error = errorCode || 'none';",
+                "rec_error = errorCode;",
+                1,
+            )
+            tree.write(source, encoding="utf-8", xml_declaration=True)
+            build_b005(source, destination)
+            upgraded = ET.parse(destination).getroot()
+            upgraded_init = next(
+                task
+                for task in upgraded.findall("Task")
+                if task.findtext("nme") == "INIT_SIGNIFICANT_PLACES"
+            )
+            upgraded_text = "\n".join(upgraded_init.itertext())
+            self.assertIn("rec_error = errorCode || 'none';", upgraded_text)
+            self.assertNotIn("rec_error = errorCode;", upgraded_text)
+
 
 if __name__ == "__main__":
     unittest.main()

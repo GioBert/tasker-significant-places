@@ -2,7 +2,9 @@
 
 ![Tasker Significant Places](docs/assets/hero.png)
 
-`tasker-significant-places` e' un progetto Tasker pensato per costruire un diario semplice dei luoghi in cui il telefono si e' fermato davvero durante la giornata.
+`tasker-significant-places` e' un progetto Tasker per costruire un diario
+giornaliero dei luoghi nei quali il telefono si e' fermato davvero, evitando di
+registrare un tracciato continuo degli spostamenti.
 
 L'idea nasce da un'esigenza pratica: non interessa registrare ogni singolo spostamento, ma capire con chiarezza **dove si e' stati** e **quando si e' arrivati in un luogo significativo**. In molte situazioni quotidiane un log di movimento continuo produce troppo rumore: semafori, traffico lento, soste brevi, pause tecniche. Questo progetto cerca invece di estrarre solo le soste che hanno davvero senso nel racconto della giornata.
 
@@ -63,6 +65,21 @@ Nel prototipo attuale il campo `TIMESTAMP` ha questo significato:
 
 Questo rende il log piu' vicino all'orario reale di arrivo, pur mantenendo la scrittura del record solo dopo che la sosta e' stata confermata.
 
+## Avvio rapido
+
+1. leggere [setup del telefono Android](docs/setup_telefono_android.md);
+2. copiare sul telefono i file di configurazione partendo dagli esempi in
+   `config/`;
+3. importare `significant_places_tasker.xml` in Tasker;
+4. verificare percorsi, permessi e valori con
+   [configurazione esterna](docs/configurazione_esterna.md);
+5. creare un backup manuale prima di ogni modifica seguendo
+   [backup e ripristino](docs/backup_ripristino_tasker.md).
+
+Il file `config/known_places.example.csv` contiene soltanto dati sintetici. I
+file reali con coordinate e nomi dei luoghi devono restare locali e non devono
+essere aggiunti a Git.
+
 ## Parte tecnica
 
 ### Parametri attuali del prototipo
@@ -84,25 +101,16 @@ Questo rende il log piu' vicino all'orario reale di arrivo, pur mantenendo la sc
 
 ### Struttura della repo
 
-- `config/tasker_globals.csv`
-- `docs/visione_progetto.md`
-- `docs/privacy_e_anonimizzazione.md`
-- `docs/setup_telefono_android.md`
-- `docs/convenzioni_linguistiche.md`
-- `docs/precisione_dei_dati.md`
-- `docs/strumenti_consigliati.md`
-- `docs/specifica_logger_luoghi.md`
-- `docs/mappa_variabili_tasker.md`
-- `docs/configurazione_esterna.md`
-- `docs/comportamento_operativo.md`
-- `docs/validazione_dispositivo_test.md`
-- `docs/backup_ripristino_tasker.md`
-- `docs/registro_modifiche_tasker.md`
-- `docs/simulazione_locale.md`
+- `significant_places_tasker.xml`: export pubblico anonimizzato di Tasker;
+- `config/`: default pubblici ed esempio sintetico dei luoghi noti;
+- `docs/`: specifiche, setup, privacy, validazione e procedure operative;
+- `tools/`: simulatore, validatore e generatori dei backup di test;
+- `tests/`: regressioni locali e percorso sintetico.
 
 ### Stato attuale
 
-La repo contiene un prototipo Tasker funzionante con:
+La repo contiene un'automazione Tasker funzionante e validata sul dispositivo
+di test con:
 
 - `LOAD_CONFIG_DEFAULTS`
 - `INIT_SIGNIFICANT_PLACES`
@@ -122,11 +130,47 @@ Il prototipo attuale:
   vuoto, malformato o incoerente;
 - espone stato e diagnostica persistenti tramite le variabili `%RECOVERY_*`
 
+La recovery dal CSV giornaliero e la scrittura transazionale sono state
+validate sul runtime Tasker. I test locali verificano inoltre struttura XML,
+fallback di configurazione, replay CSV, commit dello stato e trasformazioni dei
+backup di collaudo.
+
+Per eseguire la suite:
+
+```powershell
+python -m unittest discover -s tests -v
+```
+
+## Affidabilita' dopo il riavvio
+
+Sul dispositivo Xiaomi/MIUI usato per i test, le sole impostazioni di autostart
+e batteria non hanno garantito in modo ripetibile la ricreazione automatica di
+`MonitorService`. La presenza di Tasker nella schermata delle app recenti non
+dimostra che il processo sia attivo.
+
+E' stato quindi validato un watchdog MacroDroid Premium separato dalla logica
+del progetto:
+
+```text
+Avvio Dispositivo -> Attendi 1 minuto -> Lancia Tasker
+```
+
+Il watchdog non modifica profili, task, variabili o CSV. Configurazione,
+permessi e procedura di verifica sono documentati nel
+[setup Android](docs/setup_telefono_android.md) e nella
+[validazione del dispositivo](docs/validazione_dispositivo_test.md).
+
+## Privacy
+
+La repository pubblica non deve contenere coordinate reali, luoghi conosciuti,
+percorsi, seriali ADB, identificativi Android o backup completi del telefono.
+La strategia completa e la checklist prima del push sono descritte in
+[privacy e anonimizzazione](docs/privacy_e_anonimizzazione.md).
+
 ### Prossimi passi prioritari
 
 - continuare i test reali in movimento con questa versione
-- mantenere verificato il recovery dopo riavvio e primo sblocco sul dispositivo
-  di test
+- osservare nel tempo l'affidabilita' del watchdog dopo riavvio e primo sblocco
 - pulire le globali obsolete ancora presenti nell'ambiente Tasker
 - valutare una strategia ibrida basata su movimento, con fallback periodico e
   confronto energetico controllato

@@ -339,6 +339,43 @@ La recovery e i dati non sono influenzati.
 
 Esito: **mantenuto; recovery runtime da CSV esistente superata**.
 
+### Watchdog Di Riavvio MacroDroid - 18 Luglio 2026
+
+Ambito:
+
+- mitigazione esterna per la mancata ricreazione automatica di
+  `MonitorService` dopo alcuni riavvii reali del telefono;
+- nessuna modifica ai profili, task o dati Significant Places.
+
+Configurazione:
+
+- MacroDroid `5.65.9`, macro `WATCHDOG_TASKER_BOOT`;
+- evento `Avvio Dispositivo`;
+- attesa di un minuto senza allarme esatto;
+- avvio normale di Tasker, senza forzare una nuova istanza e senza esclusione
+  dalle app recenti;
+- nessun vincolo.
+
+Prerequisiti:
+
+- avvio automatico MIUI e batteria `Nessuna restrizione` per MacroDroid;
+- sospensione dell'app inutilizzata disabilitata;
+- apertura di finestre dal background, finestre pop-up e visualizzazione sulla
+  schermata di blocco consentite;
+- MacroDroid abilitato, macro attiva e licenza Premium attiva sul dispositivo
+  di test.
+
+Test:
+
+- prova manuale conclusa con apertura automatica di Tasker, processo presente
+  e `MonitorService` attivo;
+- riavvio reale concluso senza apertura manuale delle app;
+- dopo il primo sblocco MacroDroid e Tasker risultavano in esecuzione e
+  `MonitorService` era attivo;
+- nessun dato o file Significant Places modificato dal watchdog.
+
+Esito: **mantenuto; workaround di boot validato sul dispositivo di test**.
+
 ## Modello Per I Batch Successivi
 
 ```text

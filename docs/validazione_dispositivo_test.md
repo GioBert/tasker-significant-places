@@ -39,11 +39,26 @@ Sul dispositivo sono risultate necessarie o utili queste impostazioni:
 - permesso MIUI `Mostra sulla schermata di blocco` impostato su
   `Consenti sempre`
 
-Nel test conclusivo di riavvio, Tasker non era attivo prima del primo sblocco,
-quando la configurazione protetta non era ancora disponibile. Senza aprire
-l'app, processo e `MonitorService` sono partiti entro 30 secondi dal primo
-sblocco e gli allarmi periodici sono stati ricreati. Il primo sblocco dopo
-l'accensione e' quindi una precondizione operativa su questo telefono.
+Un primo test aveva mostrato la partenza del processo entro 30 secondi dal
+primo sblocco. Il risultato non si e' pero' ripetuto: in due riavvii reali
+successivi Tasker non ha ricreato processo e `MonitorService`, anche dopo piu'
+di un intervallo periodico. Autostart MIUI, batteria senza restrizioni,
+whitelist Android e permessi aggiuntivi risultavano corretti. La presenza di
+Tasker nella schermata Recenti non era indicativa: ADB confermava l'assenza del
+processo.
+
+E' stato quindi aggiunto un watchdog esterno con MacroDroid `5.65.9`:
+`Avvio Dispositivo` > attesa di un minuto > `Lancia Tasker`. MacroDroid e'
+configurato con avvio automatico, nessuna restrizione energetica, sospensione
+per inutilizzo disabilitata e autorizzazione MIUI ad aprire finestre dal
+background e sulla schermata di blocco.
+
+La macro ha superato prima una prova manuale: l'avvio di Tasker ha creato
+processo e `MonitorService`. Ha poi superato un riavvio reale: dopo il primo
+sblocco e senza aprire manualmente Tasker o MacroDroid, entrambi i processi e
+`MonitorService` erano attivi. Il watchdog e' pertanto la mitigazione operativa
+adottata su questo telefono; MacroDroid deve restare abilitato. Sul dispositivo
+di test e' attiva la licenza Premium.
 
 Dopo un `force-stop`, invece, Android non permette a un'app di ripartire da
 sola. Se viene eseguito un arresto forzato, aprire Tasker. L'opzione
